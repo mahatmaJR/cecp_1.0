@@ -9,6 +9,7 @@
 %>
 <head>
     <title>Coach Sign Up</title>
+    <link rel="icon" type="image/ico" href="<%=request.getContextPath()%>/img/cecp.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/components.css">
@@ -16,7 +17,6 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/responsee.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/jamsol/jamsol.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/jamsol/jamsol.theme.css">
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/lightcase.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/userInputForm.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/template-style.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,700,900&amp;subset=latin-ext" rel="stylesheet">
@@ -39,9 +39,9 @@
             <input type="text" id="certLevel" name="certLevel" value="Master_Coaching" />
             <input type="text" id="mcCertNo" name="mcCertNo" placeholder="MCC Cert Number" />
             <h2 class="fs-title">Login Detail</h2>
-            <input type="text" placeholder="User Name" required="" id="userName" name=""/>
-            <input type="password" placeholder="Password" required="" id="pass" name="" />
-            <input type="password" placeholder="Confirm Password" required="" id="confPass" name="" />
+            <input type="text" placeholder="User Name" required="" id="username" name="username"/>
+            <input type="password" placeholder="Password" required="" id="pass" name="pass" />
+            <input type="password" placeholder="Confirm Password" required="" id="confPass" name="confPass" />
 
             <input type="submit" name="submit" class="submit action-button" value="Submit"/>
 

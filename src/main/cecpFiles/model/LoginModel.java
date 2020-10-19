@@ -21,8 +21,11 @@ public class LoginModel {
     @OneToOne(mappedBy = "loginModel", fetch = FetchType.EAGER)
     TraineeModel trainee;
 
-    @OneToOne(mappedBy = "coachLogin")
+    @OneToOne(mappedBy = "coachLogin", fetch = FetchType.EAGER)
     CoachModel coach;
+
+    @OneToOne(mappedBy = "adminLogin", fetch = FetchType.EAGER)
+    AdminModel administrator;
 
     public String getUserName() {
         return userName;
@@ -72,6 +75,13 @@ public class LoginModel {
         this.coach = coach;
     }
 
+    public AdminModel getAdministrator() {
+        return administrator;
+    }
+
+    public void setAdministrator(AdminModel administrator) {
+        this.administrator = administrator;
+    }
 
     @Override
     public boolean equals(Object o) {

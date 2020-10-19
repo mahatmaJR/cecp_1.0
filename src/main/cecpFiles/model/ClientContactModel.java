@@ -75,4 +75,21 @@ public class ClientContactModel {
     public void setDateRegistered(Date dateRegistered) {
         this.dateRegistered = dateRegistered;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ClientContactModel )) return false;
+        return clientContactId != 0 && clientContactId == (((ClientContactModel) o).getClientContactId());
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
+    }
+
+    @Override
+    public String toString() {
+        return this.userFullName;
+    }
 }

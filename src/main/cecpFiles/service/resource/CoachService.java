@@ -54,11 +54,11 @@ public class CoachService {
                 CoachModel coach = coachRepo.newCoachRecord(firstName, surname, lastName, address, email, phoneNumber, certLevel, mccCertNo, userName, password, confirmPassword, role);
                 HttpSession session = req.getSession();
                 session.setAttribute("loggedCoach", coach);
-                session.setMaxInactiveInterval(10*60);
+                session.setMaxInactiveInterval(5*60);
                 Cookie coachCookie = new Cookie("user", userName);
-                coachCookie.setMaxAge(10*60);
+                coachCookie.setMaxAge(5*60);
                 resp.addCookie(coachCookie);
-                req.getRequestDispatcher("/coachPortal").forward(req, resp);
+                resp.sendRedirect("/cecp/coachPortal");
 
             }
 
@@ -67,8 +67,7 @@ public class CoachService {
             String msg = "An error occurred while processing your request, No need to worry, Our System Admin has been notified";
             req.setAttribute("msg", msg);
             req.getRequestDispatcher("/msgDisplay").forward(req, resp);
-            System.out.println(e);
-
+            e.printStackTrace();
         }
 
     }

@@ -3,6 +3,7 @@
 <html lang="en-US">
 <head>
     <title>CECP Corporate Training</title>
+    <link rel="icon" type="image/ico" href="<%=request.getContextPath()%>/img/cecp.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/components.css">
@@ -24,8 +25,8 @@
 <header role="banner" class="position-absolute">
     <nav class="background-transparent background-primary-dott full-width sticky">
         <div class="logo hide-l hide-xl hide-xxl">
-            <a href="/cecp/index" class="logo">
-                <img class="logo-dark" src="<%=request.getContextPath()%>/img/CECP%20logo.JPG" alt="">
+            <a href="<%=request.getContextPath()%>/index" class="logo">
+                <img class="logo-dark" src="<%=request.getContextPath()%>/img/cecp-02.png" alt="">
             </a>
         </div>
 
@@ -33,32 +34,32 @@
 
             <div class="top-nav left-menu">
                 <ul class="right top-ul chevron">
-                    <li><a href="/cecp/index">Home</a></li>
+                    <li><a href="<%=request.getContextPath()%>/index">Home</a></li>
                     <li>
                         <a>Our Programs</a>
                         <ul>
-                            <li><a href="/cecp/enrollmentForm">Coaching Certification</a></li>
-                            <li><a href="/cecp/corporateTraining">Corporate Training</a></li>
-                            <li><a href="/cecp/enrollmentForm">Soft Skills</a></li>
+                            <li><a href="<%=request.getContextPath()%>/enrollmentForm">Coaching Certification</a></li>
+                            <li><a href="<%=request.getContextPath()%>/corporateTraining">Corporate Training</a></li>
+                            <li><a href="<%=request.getContextPath()%>/enrollmentForm">Soft Skills</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
 
-            <%--          <!-- logo -->--%>
-            <%--          <ul class="logo-menu">--%>
-            <%--            <a href="index.jsp" class="logo">--%>
-            <%--              <!-- Logo White Version -->--%>
-            <%--              <img class="logo-white" src="img/logo.svg" alt="">--%>
-            <%--              <!-- Logo Dark Version -->--%>
-            <%--              <img class="logo-dark" src="img/logo-dark.svg" alt="">--%>
-            <%--            </a>--%>
-            <%--          </ul>--%>
+                      <!-- logo -->
+                      <ul class="logo-menu">
+                        <a href="<%=request.getContextPath()%>/index" class="logo">
+                          <!-- Logo White Version -->
+                          <img class="logo-white" src="<%=request.getContextPath()%>/img/cecp-02.png" alt="">
+                          <!-- Logo Dark Version -->
+                          <img class="logo-dark" src="<%=request.getContextPath()%>/img/cecp-02.png" alt="">
+                        </a>
+                      </ul>
 
             <div class="top-nav right-menu">
                 <ul class="top-ul chevron">
-                    <li><a href="/cecp/aboutUs">About Us</a></li>
-                    <li><a href="/cecp/contactUs">Contact</a></li>
+                    <li><a href="<%=request.getContextPath()%>/aboutUs">About Us</a></li>
+                    <li><a href="<%=request.getContextPath()%>/contactUs">Contact</a></li>
                 </ul>
             </div>
         </div>
@@ -128,7 +129,7 @@
                     <p>The employees of an organization are a significant asset in terms of skills and
                         abilities and yet so often the management of employees is often neglected. The
                         courses below will help you effectively manage your people.<br>
-                        <a class="text-primary-hover" href="/cecp/corporateEngagement">Click Here to Enquire Now!!</a>
+                        <a class="text-primary-hover" href="<%=request.getContextPath()%>/corporateEngagement">Click Here to Enquire Now!!</a>
                     </p>
                 </div>
 
@@ -141,21 +142,15 @@
                         relationship is often conflictual in nature. The training programs below will help you
                         effectively deal with the employer-employee relationship as well as equip you with the
                         skills to help your organization become complaint with labor legislation.<br>
-                        <a class="text-primary-hover" href="/cecp/corporateEngagement">Click Here to Enquire Now!!</a>
+                        <a class="text-primary-hover" href="<%=request.getContextPath()%>/corporateEngagement">Click Here to Enquire Now!!</a>
                     </p>
                 </div>
             </div>
 
             <div class="s-12 m-12 l-4">
-                <div class="carousel-default owl-carousel carousel-hide-arrows margin-m-top-bottom-50">
+                <div class="margin-m-top-bottom-50">
                     <div class="item">
                         <img src="<%=request.getContextPath()%>/img/communication.jpg"/>
-                    </div>
-                    <div class="item">
-                        <img src="<%=request.getContextPath()%>/img/I%20can.jpg"/>
-                    </div>
-                    <div class="item">
-                        <img src="<%=request.getContextPath()%>/img/comm.jpg"/>
                     </div>
                     <div class="item">
                         <img src="<%=request.getContextPath()%>/img/civility.png"/>
@@ -171,7 +166,7 @@
                         for growth. The training programs below will help you understand your organization;
                         manage change; align people, process, and practices, resulting in increased organization
                         effectiveness in accomplishing organizational goals.<br>
-                        <a class="text-primary-hover" href="/cecp/corporateEngagement">Click Here to Enquire Now!!</a>
+                        <a class="text-primary-hover" href="<%=request.getContextPath()%>/corporateEngagement">Click Here to Enquire Now!!</a>
                     </p>
                 </div>
 
@@ -184,7 +179,7 @@
                         harmoniously with other people. The presence of these skills in employees are crucial
                         for effective and healthy organizational functioning that will be both beneficial to
                         individuals as well as the organization.<br>
-                        <a class="text-primary-hover" href="/cecp/corporateEngagement">Click Here to Enquire Now!!</a>
+                        <a class="text-primary-hover" href="<%=request.getContextPath()%>/corporateEngagement">Click Here to Enquire Now!!</a>
                     </p>
                 </div>
             </div>
@@ -212,7 +207,7 @@
                 <div class="s-12 m-6 l-3 xl-2">
                     <h4 class="text-white text-strong margin-m-top-30">Useful Links</h4>
                     <a class="text-primary-hover" href="">FAQ</a><br>
-                    <a class="text-primary-hover" href="/cecp/contact">Contact Us</a><br>
+                    <a class="text-primary-hover" href="<%=request.getContextPath()%>/contact">Contact Us</a><br>
                     <a class="text-primary-hover" href="">Blog</a>
                 </div>
                 <div class="s-12 m-6 l-3 xl-2">
@@ -243,9 +238,6 @@
             <div class="s-12 l-6">
                 <p class="text-size-12">Copyright 2020, Centre of Etiquette, Civility & Protocol</p>
                 <p class="text-size-12">Civility To Workspace</p>
-            </div>
-            <div class="s-12 l-6">
-                <a class="right text-size-12 text-primary-hover" href="https://www.jamgadsol.co.ke" title="Code Solution"><br>Jamgad Solutions</a>
             </div>
         </div>
     </section>

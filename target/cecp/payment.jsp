@@ -12,6 +12,7 @@
 %>
 <head>
     <title>Payments</title>
+    <link rel="icon" type="image/ico" href="<%=request.getContextPath()%>/img/cecp.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/components.css">
@@ -31,7 +32,7 @@
 <body>
 <div class="container">
     <section id="content">
-        <form action="/cecp/main/payment/paymentRecord" method="post" >
+        <form action="<%=request.getContextPath()%>/main/payment/paymentRecord" method="post" >
             <h1>Login Form</h1>
             <div>
                 <input type="text" placeholder="Transaction Code" required="" id="transactionCode" name="transactionCode" />

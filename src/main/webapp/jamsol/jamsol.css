@@ -1,59 +1,51 @@
-/**
- * Owl Carousel v2.2.1
- * Copyright 2013-2017 David Deutsch
- * Licensed under  ()
- */
-/*
- *  Owl Carousel - Core
- */
-.owl-carousel {
+.jamsol {
   display: none;
   width: 100%;
   -webkit-tap-highlight-color: transparent;
   /* position relative and z-index fix webkit rendering fonts issue */
   position: relative;
   z-index: 1; }
-  .owl-carousel .owl-stage {
+  .jamsol .jamsol-stage {
     position: relative;
     -ms-touch-action: pan-Y;
     -moz-backface-visibility: hidden;
     /* fix firefox animation glitch */ }
-  .owl-carousel .owl-stage:after {
+  .jamsol .jamsol-stage:after {
     content: ".";
     display: block;
     clear: both;
     visibility: hidden;
     line-height: 0;
     height: 0; }
-  .owl-carousel .owl-stage-outer {
+  .jamsol .jamsol-stage-outer {
     position: relative;
     overflow: hidden;
     /* fix for flashing background */
     -webkit-transform: translate3d(0px, 0px, 0px); }
-  .owl-carousel .owl-wrapper,
-  .owl-carousel .owl-item {
+  .jamsol .jamsol-wrapper,
+  .jamsol .jamsol-item {
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     -ms-backface-visibility: hidden;
     -webkit-transform: translate3d(0, 0, 0);
     -moz-transform: translate3d(0, 0, 0);
     -ms-transform: translate3d(0, 0, 0); }
-  .owl-carousel .owl-item {
+  .jamsol .jamsol-item {
     position: relative;
     min-height: 1px;
     float: left;
     -webkit-backface-visibility: hidden;
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none; }
-  .owl-carousel .owl-item img {
+  .jamsol .jamsol-item img {
     display: block;
     width: 100%; }
-  .owl-carousel .owl-nav.disabled,
-  .owl-carousel .owl-dots.disabled {
+  .jamsol .jamsol-nav.disabled,
+  .jamsol .jamsol-dots.disabled {
     display: none; }
-  .owl-carousel .owl-nav .owl-prev,
-  .owl-carousel .owl-nav .owl-next,
-  .owl-carousel .owl-dot {
+  .jamsol .jamsol-nav .jamsol-prev,
+  .jamsol .jamsol-nav .jamsol-next,
+  .jamsol .jamsol-dot {
     cursor: pointer;
     cursor: hand;
     -webkit-user-select: none;
@@ -61,46 +53,43 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none; }
-  .owl-carousel.owl-loaded {
+  .jamsol.jamsol-loaded {
     display: block; }
-  .owl-carousel.owl-loading {
+  .jamsol.jamsol-loading {
     opacity: 0;
     display: block; }
-  .owl-carousel.owl-hidden {
+  .jamsol.jamsol-hidden {
     opacity: 0; }
-  .owl-carousel.owl-refresh .owl-item {
+  .jamsol.jamsol-refresh .jamsol-item {
     visibility: hidden; }
-  .owl-carousel.owl-drag .owl-item {
+  .jamsol.jamsol-drag .jamsol-item {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none; }
-  .owl-carousel.owl-grab {
+  .jamsol.jamsol-grab {
     cursor: move;
     cursor: grab; }
-  .owl-carousel.owl-rtl {
+  .jamsol.jamsol-rtl {
     direction: rtl; }
-  .owl-carousel.owl-rtl .owl-item {
+  .jamsol.jamsol-rtl .jamsol-item {
     float: right; }
 
 /* No Js */
-.no-js .owl-carousel {
+.no-js .jamsol {
   display: block; }
 
-/*
- *  Owl Carousel - Animate Plugin
- */
-.owl-carousel .animated {
+.jamsol .animated {
   animation-duration: 1000ms;
   animation-fill-mode: both; }
 
-.owl-carousel .owl-animated-in {
+.jamsol .jamsol-animated-in {
   z-index: 0; }
 
-.owl-carousel .owl-animated-out {
+.jamsol .jamsol-animated-out {
   z-index: 1; }
 
-.owl-carousel .fadeOut {
+.jamsol .fadeOut {
   animation-name: fadeOut; }
 
 @keyframes fadeOut {
@@ -109,31 +98,22 @@
   100% {
     opacity: 0; } }
 
-/*
- * 	Owl Carousel - Auto Height Plugin
- */
-.owl-height {
+.jamsol-height {
   transition: height 500ms ease-in-out; }
 
-/*
- * 	Owl Carousel - Lazy Load Plugin
- */
-.owl-carousel .owl-item .owl-lazy {
+.jamsol .jamsol-item .jamsol-lazy {
   opacity: 0;
   transition: opacity 400ms ease; }
 
-.owl-carousel .owl-item img.owl-lazy {
+.jamsol .jamsol-item img.jamsol-lazy {
   transform-style: preserve-3d; }
 
-/*
- * 	Owl Carousel - Video Plugin
- */
-.owl-carousel .owl-video-wrapper {
+.jamsol .jamsol-video-wrapper {
   position: relative;
   height: 100%;
   background: #000; }
 
-.owl-carousel .owl-video-play-icon {
+.jamsol .jamsol-video-play-icon {
   position: absolute;
   height: 80px;
   width: 80px;
@@ -147,15 +127,15 @@
   -webkit-backface-visibility: hidden;
   transition: transform 100ms ease; }
 
-.owl-carousel .owl-video-play-icon:hover {
+.jamsol .jamsol-video-play-icon:hover {
   -ms-transform: scale(1.3, 1.3);
       transform: scale(1.3, 1.3); }
 
-.owl-carousel .owl-video-playing .owl-video-tn,
-.owl-carousel .owl-video-playing .owl-video-play-icon {
+.jamsol .jamsol-video-playing .jamsol-video-tn,
+.jamsol .jamsol-video-playing .jamsol-video-play-icon {
   display: none; }
 
-.owl-carousel .owl-video-tn {
+.jamsol .jamsol-video-tn {
   opacity: 0;
   height: 100%;
   background-position: center center;
@@ -163,7 +143,7 @@
   background-size: contain;
   transition: opacity 400ms ease; }
 
-.owl-carousel .owl-video-frame {
+.jamsol .jamsol-video-frame {
   position: relative;
   z-index: 1;
   height: 100%;

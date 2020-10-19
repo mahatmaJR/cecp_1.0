@@ -36,7 +36,7 @@ public class CourseService {
             String msg = "An error occurred while processing your request, No need to worry, Our System Admin has been notified";
             req.setAttribute("msg", msg);
             req.getRequestDispatcher("/msgDisplay").forward(req, resp);
-            System.out.println(e);
+            e.printStackTrace();
 
         }
     }

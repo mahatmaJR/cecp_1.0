@@ -1,8 +1,10 @@
 package service.resource;
 
+import DAO.interfaces.AdminRepository;
 import DAO.interfaces.CoachRepository;
 import DAO.interfaces.LoginRepository;
 import DAO.interfaces.TraineeRepository;
+import model.AdminModel;
 import model.CoachModel;
 import model.LoginModel;
 import model.TraineeModel;
@@ -18,24 +20,30 @@ import javax.ws.rs.Path;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 
 @Path("/auth")
 public class LoginService {
 
     @EJB
-    LoginRepository loginRepo;
+    AdminRepository adminRepo;
 
     @EJB
     CoachRepository coachRepo;
+
+    @EJB
+    LoginRepository loginRepo;
 
     @EJB
     TraineeRepository traineeRepo;
 
     @Path("/UserPortal")
     @POST
-    public void checkingLoginDetail(@Context HttpServletRequest req, @Context HttpServletResponse resp) throws ServletException, IOException {
+    public void checkingLoginDetail(@Context HttpServletRequest req, @Context HttpServletResponse resp) throws ServletException, IOException, InvalidKeySpecException, NoSuchAlgorithmException {
 
         try {
+
 
             String userName = req.getParameter("username");
             String password = req.getParameter("password");
@@ -47,15 +55,15 @@ public class LoginService {
                 switch (ROLE){
                     case "Administrator" :
 
-                        CoachModel admin = coachRepo.findLoginRecord(userName).getCoach();
+                        AdminModel admin = adminRepo.findLoginRecord(userName).getAdministrator();
                         session.setAttribute("id", userName);
                         session.setAttribute("loggedAdmin", admin);
-                        session.setMaxInactiveInterval(10*60);
+                        session.setMaxInactiveInterval(5*60);
                         Cookie adminCookie = new Cookie("user", userName);
-                        adminCookie.setMaxAge(10*60);
+                        adminCookie.setMaxAge(5*60);
                         resp.addCookie(adminCookie);
                         req.setAttribute("loggedAdmin", admin);
-                        req.getRequestDispatcher("/adminPanel").forward(req, resp);
+                        resp.sendRedirect("/cecp/adminPanel");
                         System.out.println("Admin " + admin + " just logged in.");
                         break;
 
@@ -64,13 +72,13 @@ public class LoginService {
                         CoachModel coach = coachRepo.findLoginRecord(userName).getCoach();
                         session.setAttribute("id", userName);
                         session.setAttribute("loggedCoach", coach);
-                        session.setMaxInactiveInterval(10*60);
+                        session.setMaxInactiveInterval(5*60);
                         Cookie coachCookie = new Cookie("user", userName);
-                        coachCookie.setMaxAge(10*60);
+                        coachCookie.setMaxAge(5*60);
                         resp.addCookie(coachCookie);
                         req.setAttribute("loggedCoach", coach);
-                        req.getRequestDispatcher("/coachPortal").forward(req, resp);
-                        System.out.println("coach " + coach + " just logged in.");
+                        resp.sendRedirect("/cecp/coachPortal");
+                        System.out.println("Coach " + coach + " just logged in.");
                         break;
 
                     default :
@@ -78,12 +86,12 @@ public class LoginService {
                         TraineeModel trainee = traineeRepo.findLoginRecord(userName).getTrainee();
                         session.setAttribute("id", userName);
                         session.setAttribute("loggedTrainee", trainee);
-                        session.setMaxInactiveInterval(10*60);
+                        session.setMaxInactiveInterval(5*60);
                         Cookie traineeCookie = new Cookie("user", userName);
-                        traineeCookie.setMaxAge(10*60);
+                        traineeCookie.setMaxAge(5*60);
                         resp.addCookie(traineeCookie);
                         req.setAttribute("loggedTrainee", trainee);
-                        req.getRequestDispatcher("/traineePortal").forward(req, resp);
+                        resp.sendRedirect("/cecp/traineePortal");
                         System.out.println("Trainee " + trainee + " just logged in.");
 
                 }
@@ -96,7 +104,7 @@ public class LoginService {
             String msg = "An error occurred while processing your request, No need to worry, Our System Admin has been notified";
             req.setAttribute("msg", msg);
             req.getRequestDispatcher("/msgDisplay").forward(req, resp);
-            System.out.println(e);
+            e.printStackTrace();
 
         }
 

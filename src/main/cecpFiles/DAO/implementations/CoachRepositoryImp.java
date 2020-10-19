@@ -4,11 +4,14 @@ import DAO.interfaces.CoachRepository;
 import model.CoachModel;
 import model.LoginModel;
 import model.TraineeModel;
+import utility.PassSecurity;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -20,12 +23,19 @@ public class CoachRepositoryImp implements CoachRepository {
     @PersistenceContext(unitName = "CecpPU")
     EntityManager em;
 
+    private PassSecurity passwdSec = new PassSecurity();
+
     @Override
-    public CoachModel newCoachRecord(String firstName, String surname, String lastName, String address, String email, String phoneNumber, String certLevel, String mccCertNo, String userName, String password, String confirmPassword, String role) {
+    public CoachModel newCoachRecord(String firstName, String surname, String lastName,
+                                     String address, String email, String phoneNumber,
+                                     String certLevel, String mccCertNo, String userName,
+                                     String password, String confirmPassword, String role)
+            throws InvalidKeySpecException, NoSuchAlgorithmException {
         LoginModel loginModel = new LoginModel();
         loginModel.setUserName(userName);
-        loginModel.setPassword(password);
-        loginModel.setConfirmPassword(confirmPassword);
+        String hashedPassword = passwdSec.generatePasswordHash(password);
+        loginModel.setPassword(hashedPassword);
+        loginModel.setConfirmPassword(hashedPassword);
         loginModel.setRole(role);
 
         CoachModel coach = new CoachModel();

@@ -9,6 +9,7 @@
 %>
 <head>
     <title>Login</title>
+    <link rel="icon" type="image/ico" href="<%=request.getContextPath()%>/img/cecp.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/components.css">
@@ -39,7 +40,7 @@
             <div>
                 <input type="submit" value="Log in"/>
                 <a href="#">Forgot your password!?</a><br>
-                <a class="text-primary-white-hover text-l-size-20 text-primary" href="<%=request.getContextPath()%>/traineeSignUp">Register Now Here</a>
+                <a class="text-primary-white-hover text-l-size-20 text-primary" href="<%=request.getContextPath()%>/traineeSignup.jsp">Register Now Here</a>
             </div>
         </form>
     </section>

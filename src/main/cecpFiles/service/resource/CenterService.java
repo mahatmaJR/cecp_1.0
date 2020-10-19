@@ -29,7 +29,7 @@ public class CenterService {
 
             centerRepo.registerCenter(centerName, centerLocation);
 
-            req.getRequestDispatcher("/adminPanel").forward(req, resp);
+            resp.sendRedirect("/cecp/adminPanel");
 
         }catch (Exception e){
 

@@ -1,13 +1,12 @@
-<%@ page import="model.CoachModel" %>
+<%@ page import="model.AdminModel" %>
 <%@ page import="java.sql.*" %>
-<%@ page import="org.hibernate.tool.schema.internal.StandardTableExporter" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%
-    CoachModel logAdmin = (CoachModel) session.getAttribute("loggedAdmin");
+    AdminModel admin = (AdminModel) session.getAttribute("loggedAdmin");
     String URL = "jdbc:mysql://localhost:3306/cecp";
-    String USER = "root";
-    String PASS = "qwertyuiop1.";
+    String USER = "cecp";
+    String PASS = "qwertyuiop.01";
     Class.forName("com.mysql.jdbc.Driver");
     Connection con = DriverManager.getConnection(URL, USER, PASS);
 %>
@@ -15,6 +14,7 @@
 <html lang="en-US">
 <head>
     <title>Admin Panel</title>
+    <link rel="icon" type="image/ico" href="<%=request.getContextPath()%>/img/cecp.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/components.css">
@@ -33,11 +33,13 @@
 
 </head>
 <body class="size-1280">
-<% try { %>
+<%
+    try {
+%>
 <header role="banner" class="position-absolute">
     <nav class="background-transparent background-primary-dott full-width sticky">
         <div class="logo hide-l hide-xl hide-xxl">
-            <a href="/cecp/index" class="logo">
+            <a href="<%=request.getContextPath()%>/index" class="logo">
                 <img class="logo-dark" src="<%=request.getContextPath()%>/img/CECP%20logo.JPG" alt="">
             </a>
         </div>
@@ -46,32 +48,29 @@
 
             <div class="top-nav left-menu">
                 <ul class="right top-ul chevron">
-                    <li><a href="/cecp/index">Home</a></li>
+                    <li><a href="<%=request.getContextPath()%>/index">Home</a></li>
                     <li>
                         <a>Our Programs</a>
                         <ul>
-                            <li><a href="/cecp/enrollmentForm">Coaching Certification</a></li>
-                            <li><a href="/cecp/corporateTraining">Corporate Training</a></li>
-                            <li><a href="/cecp/enrollmentForm">Soft Skills</a></li>
+                            <li><a href="<%=request.getContextPath()%>/enrollmentForm">Coaching Certification</a></li>
+                            <li><a href="<%=request.getContextPath()%>/corporateTraining">Corporate Training</a></li>
+                            <li><a href="<%=request.getContextPath()%>/enrollmentForm">Soft Skills</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
 
-            <%--            <!-- logo -->--%>
-            <%--            <ul class="logo-menu">--%>
-            <%--                <a href="index.html" class="logo">--%>
-            <%--                    <!-- Logo White Version -->--%>
-            <%--                    <img class="logo-white" src="img/logo.svg" alt="">--%>
-            <%--                    <!-- Logo Dark Version -->--%>
-            <%--                    <img class="logo-dark" src="img/logo-dark.svg" alt="">--%>
-            <%--                </a>--%>
-            <%--            </ul>--%>
+                        <ul class="logo-menu">
+                            <a href="<%=request.getContextPath()%>/index" class="logo">
+                                <img class="logo-white" src="<%=request.getContextPath()%>/img/cecp-01.png" alt="">
+                                <img class="logo-dark" src="<%=request.getContextPath()%>/img/cecp-01.png" alt="">
+                            </a>
+                        </ul>
 
             <div class="top-nav right-menu">
                 <ul class="top-ul chevron">
-                    <li><a href="/cecp/aboutUs">About</a></li>
-                    <li><a href="/cecp/contactUs">Contact</a></li>
+                    <li><a href="<%=request.getContextPath()%>/aboutUs">About</a></li>
+                    <li><a href="<%=request.getContextPath()%>/contactUs">Contact</a></li>
                 </ul>
             </div>
         </div>
@@ -94,12 +93,12 @@
                         <div class="container-fluid panel-container">
                             <div class="col-xs-3 text-left">
                                 <h4 class="panel-title">
-                                    <label id="adminId">CECP ID: <b><%= logAdmin.getCoachId() %></b></label>
+                                    <label id="adminId">CECP ID: <b><%= admin.getAdminId() %></b></label>
                                 </h4>
                             </div>
                             <div class="col-xs-6 text-center ">
                                 <h4 class="panel-title">
-                                    <label id="adminUsername">Welcome: <b><%= logAdmin.getSurname() %></b></label>
+                                    <label id="adminUsername">Welcome: <b><%= admin.getSurname() %></b></label>
                                 </h4>
                             </div>
                             <div class="col-xs-3 text-right">
@@ -111,9 +110,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel-body" style="max-height: 650px; min-height: 350px" >
+                    <div class="panel-body" style="overflow: auto; max-height: 720px; min-height: 220px" >
                         <ul  class="nav nav-pills list-inline">
-                            <li class=""><a  href="#coach" data-toggle="pill">Coaches</a></li>
+                            <li class=""><a  href="#profile" data-toggle="pill">Profile</a></li>
+                            <li><a  href="#coach" data-toggle="pill">Coaches</a></li>
                             <li><a href="#trainee" data-toggle="pill">Trainees</a></li>
                             <li><a href="#center" data-toggle="pill">Centers</a></li>
                             <li><a href="#course" data-toggle="pill">Courses</a></li>
@@ -125,6 +125,40 @@
                         </ul>
 
                         <div class="tab-content">
+                            <div class="tab-pane" id="profile">
+                                <h3>Profile</h3>
+                                <form id="coachDetail">
+                                    <table>
+                                        <tbody>
+                                        <tr>
+                                            <td>SURNAME</td>
+                                            <td><%= admin.getSurname() %></td>
+                                        </tr>
+                                        <tr>
+                                            <td>FIRST NAME</td>
+                                            <td><%= admin.getFirstName() %></td>
+                                        </tr>
+                                        <tr>
+                                            <td>LAST NAME</td>
+                                            <td><%= admin.getLastName() %></td>
+                                        </tr>
+                                        <tr>
+                                            <td>EMAIL</td>
+                                            <td><%= admin.getEmail() %></td>
+                                        </tr>
+                                        <tr>
+                                            <td>MOBILE NUMBER </td>
+                                            <td><%= admin.getPhoneNumber() %></td>
+                                        </tr>
+                                        <tr>
+                                            <td>DESIGNATION</td>
+                                            <td><%= admin.getHierarchy() %></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </form>
+                            </div>
+
                             <div class="tab-pane" id="coach">
                                 <div>
                                     <a class="btn btn-primary" href="<%=request.getContextPath()%>/coachSignUp">New Coach</a>
@@ -394,17 +428,36 @@
                                 <form>
                                     <table id="examsTable" class="table table-custom table-fixed table-striped" border="1" style="border: #5e5e5e">
                                         <thead>
-                                        <tr>
-                                            <td>Exam ID</td>
-                                            <td>Course ID</td>
-                                            <td>Name</td>
-                                            <td>Level</td>
-                                            <td>Date Scheduled</td>
-                                            <td>Time</td>
-                                            <td>File</td>
-                                        </tr>
+                                            <tr>
+                                                <td>Exam ID</td>
+                                                <td>Course ID</td>
+                                                <td>Exam Name</td>
+                                                <td>Date Scheduled</td>
+                                                <td>Time Scheduled</td>
+                                                <td>Add Questions</td>
+                                            </tr>
                                         </thead>
                                         <tbody>
+                                            <%
+                                                Statement st8 = con.createStatement();
+                                                ResultSet rs8 = st8.executeQuery("SELECT * FROM exam_detail");
+                                                while (rs8.next()) {
+                                            %>
+                                            <tr>
+                                                <td><%=rs8.getString("exam_id")%></td>
+                                                <td><%=rs8.getString("course_ref")%></td>
+                                                <td><%=rs8.getString("exam_name")%></td>
+                                                <td><%=rs8.getString("exam_date")%></td>
+                                                <td><%=rs8.getString("time_scheduled")%></td>
+                                                <td>
+                                                    <a href="javascript:window.open('<%=request.getContextPath()%>/setExamQuestion.jsp?examId=<%=rs8.getString("exam_id")%>', 'Set Exam Question', 'width=420,height=300,top=50,left=50');">Add Question(s)</a>Add Questions
+                                                </td>
+                                            </tr>
+                                            <%
+                                                }
+                                                rs8.close();
+                                                st8.close();
+                                            %>
 
                                         </tbody>
                                     </table>
@@ -688,14 +741,11 @@
                 <p class="text-size-12">Copyright 2020, Centre of Etiquette, Civility & Protocol</p>
                 <p class="text-size-12">Serve Others</p>
             </div>
-            <div class="s-12 l-6">
-                <a class="right text-size-12 text-primary-hover" href="https://www.jamgadsol.co.ke" title="Code Solution"><br>Jamgad Solutions</a>
-            </div>
         </div>
     </section>
 </footer>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/response.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/jamsol/jamsol.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/owl-carousel/owl.carousel.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/template-scripts.js"></script>
 <%
     } catch (Exception ignored) { }

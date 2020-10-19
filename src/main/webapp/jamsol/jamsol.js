@@ -2339,7 +2339,7 @@
 		var element = document.fullscreenElement || document.mozFullScreenElement ||
 				document.webkitFullscreenElement;
 
-		return element && $(element).parent().hasClass('owl-video-frame');
+		return element && $(element).parent().hasClass('jamsol-video-frame');
 	};
 
 	/**
@@ -2459,7 +2459,7 @@
 
 	Animate.prototype.clear = function(e) {
 		$(e.target).css( { 'left': '' } )
-			.removeClass('animated owl-animated-out owl-animated-in')
+			.removeClass('animated jamsol-animated-out jamsol-animated-in')
 			.removeClass(this.core.settings.animateIn)
 			.removeClass(this.core.settings.animateOut);
 		this.core.onTransitionEnd();

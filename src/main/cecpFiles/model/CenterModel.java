@@ -92,8 +92,8 @@ public class CenterModel implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof TraineeModel )) return false;
-        return centerId != 0 && centerId == (((TraineeModel) o).getTraineeId());
+        if (!(o instanceof CenterModel )) return false;
+        return centerId != 0 && centerId == (((CenterModel) o).getCenterId());
     }
 
     @Override

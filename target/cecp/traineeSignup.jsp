@@ -9,6 +9,7 @@
 %>
 <head>
     <title>Trainee Sign Up</title>
+    <link rel="icon" type="image/ico" href="<%=request.getContextPath()%>/img/cecp.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/components.css">
@@ -28,7 +29,7 @@
 <body>
 <div class="container">
     <section id="content">
-        <form id="msform" method="post" action="/cecp/main/trainee/addTrainee">
+        <form id="msform" method="post" action="<%=request.getContextPath()%>/main/trainee/addTrainee">
             <h2 class="fs-title">Create your account</h2>
             <h2 class="fs-title">Personal Details</h2>
             <input type="text" id="fName" name="fName" placeholder="First Name" />

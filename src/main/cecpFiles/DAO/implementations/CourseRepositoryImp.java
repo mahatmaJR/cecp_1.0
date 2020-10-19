@@ -36,4 +36,9 @@ public class CourseRepositoryImp implements CourseRepository {
     public CourseModel findCourseById(int courseId) {
         return em.find(CourseModel.class, courseId);
     }
+
+    @Override
+    public CourseModel findCourseByName(String courseName) {
+        return em.find(CourseModel.class, courseName);
+    }
 }

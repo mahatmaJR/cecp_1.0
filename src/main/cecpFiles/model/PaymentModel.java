@@ -76,4 +76,21 @@ public class PaymentModel {
     public void setEnrollmentPaymentReference(EnrollTraineeModel enrollmentReference) {
         this.enrollmentPaymentReference = enrollmentReference;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PaymentModel )) return false;
+        return paymentId != 0 && paymentId == (((PaymentModel) o).getPaymentId());
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
+    }
+
+    @Override
+    public String toString() {
+        return this.paymentTransactionCode;
+    }
 }

@@ -9,5 +9,8 @@
         <module name="cecp" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="cecp" target="8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

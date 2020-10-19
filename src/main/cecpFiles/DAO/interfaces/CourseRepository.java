@@ -9,4 +9,5 @@ public interface CourseRepository {
     CourseModel registerCourse (String courseName, String certLevel, String courseDescription);
     CourseModel saveCourse(CourseModel center);
     CourseModel findCourseById(int courseId);
+    CourseModel findCourseByName(String courseName);
 }

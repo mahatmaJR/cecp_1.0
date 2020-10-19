@@ -34,6 +34,14 @@ public class TraineeModel implements Serializable {
     @Column(name = "cert_level")
     String certLevel;
 
+    @ManyToOne
+    @JoinColumn(name = "center_ref", referencedColumnName = "center_id")
+    CenterModel center;
+
+    @ManyToOne
+    @JoinColumn(name = "coach_ref", referencedColumnName = "coach_id")
+    CoachModel coach;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "username_ref", referencedColumnName = "username")
     LoginModel loginModel;
@@ -44,13 +52,8 @@ public class TraineeModel implements Serializable {
     @OneToMany(mappedBy = "traineeMakingPayment", fetch = FetchType.EAGER)
     Set<PaymentModel> paymentsMade = new HashSet<>();
 
-    @ManyToOne
-    @JoinColumn(name = "center_ref", referencedColumnName = "center_id")
-    CenterModel center;
-
-    @ManyToOne
-    @JoinColumn(name = "coach_ref", referencedColumnName = "coach_id")
-    CoachModel coach;
+    @OneToMany(mappedBy = "trainee", fetch = FetchType.EAGER)
+    Set<TraineeResultModel> examResult = new HashSet<>();
 
     public TraineeModel() {
         super();
@@ -170,6 +173,14 @@ public class TraineeModel implements Serializable {
         this.coach = coach;
     }
 
+    public Set<TraineeResultModel> getExamResult() {
+        return examResult;
+    }
+
+    public void setExamResult(Set<TraineeResultModel> result) {
+        this.examResult = result;
+    }
+
     public void addEnrollClass(EnrollTraineeModel enrollTraineeModel){
         enrollTraineeModel.setEnrollingTrainee(this);
         enrolledClasses.add(enrollTraineeModel);
@@ -180,6 +191,18 @@ public class TraineeModel implements Serializable {
         enrollTraineeModel.setEnrollingTrainee(null);
         enrolledClasses.remove(enrollTraineeModel);
         this.setEnrolledClasses(enrolledClasses);
+    }
+
+    public void addExamResult(TraineeResultModel result){
+        result.setTrainee(this);
+        examResult.add(result);
+        this.setExamResult(examResult);
+    }
+
+    public void removeExamResult(TraineeResultModel result){
+        result.setTrainee(null);
+        examResult.remove(result);
+        this.setExamResult(examResult);
     }
 
     public void addPaymentBeingMade(PaymentModel payment){

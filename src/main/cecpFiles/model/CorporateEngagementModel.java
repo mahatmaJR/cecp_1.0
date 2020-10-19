@@ -86,4 +86,21 @@ public class CorporateEngagementModel {
     public void setDateRegistered(Date dateRegistered) {
         this.dateRegistered = dateRegistered;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CorporateEngagementModel )) return false;
+        return corporateEngagementId != 0 && corporateEngagementId == (((CorporateEngagementModel) o).getCorporateEngagementId());
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
+    }
+
+    @Override
+    public String toString() {
+        return this.companyName;
+    }
 }

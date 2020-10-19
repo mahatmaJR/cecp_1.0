@@ -17,6 +17,8 @@ public class WebServiceApplication extends Application {
 
         singletons.add(new CenterService());
         singletons.add(new CoachService());
+        singletons.add(new ContactInfoService());
+        singletons.add(new CorporateEngagementService());
         singletons.add(new CourseService());
         singletons.add(new EnrollmentService());
         singletons.add(new LoginService());

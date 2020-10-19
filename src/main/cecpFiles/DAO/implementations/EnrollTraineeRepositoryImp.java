@@ -6,6 +6,7 @@ import model.CourseModel;
 import model.EnrollTraineeModel;
 import model.TraineeModel;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,6 +17,7 @@ import java.util.Set;
 @Stateless
 public class EnrollTraineeRepositoryImp implements EnrollTraineeRepository {
 
+    @EJB
     TraineeRepository traineeRepo;
 
     @PersistenceContext(unitName = "CecpPU")
@@ -39,8 +41,6 @@ public class EnrollTraineeRepositoryImp implements EnrollTraineeRepository {
         em.persist(enrollment);
 
         enrollingTrainee.addEnrollClass(enrollment);
-
-        em.merge(enrollingTrainee);
 
         return enrollment;
     }

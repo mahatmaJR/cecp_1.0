@@ -164,8 +164,8 @@ public class CoachModel {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof TraineeModel )) return false;
-        return coachId != 0 && coachId == (((TraineeModel) o).getTraineeId());
+        if (!(o instanceof CoachModel )) return false;
+        return coachId != 0 && coachId == (((CoachModel) o).getCoachId());
     }
 
     @Override

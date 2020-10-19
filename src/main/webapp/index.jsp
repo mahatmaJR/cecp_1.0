@@ -3,6 +3,7 @@
 <html lang="en-US">
 <head>
     <title>CECP</title>
+    <link rel="icon" type="image/ico" href="<%=request.getContextPath()%>/img/cecp.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/components.css">
@@ -42,8 +43,8 @@
 <header role="banner" class="position-absolute">
     <nav class="background-transparent background-primary-dott full-width sticky">
         <div class="logo hide-l hide-xl hide-xxl">
-            <a href="/cecp/index" class="logo">
-                <img class="logo-dark" src="<%=request.getContextPath()%>/img/CECP%20logo.JPG" alt="">
+            <a href="<%=request.getContextPath()%>/index" class="logo">
+                <img class="logo-dark" src="<%=request.getContextPath()%>/img/cecp-02.png" alt="">
             </a>
         </div>
 
@@ -51,33 +52,33 @@
 
             <div class="top-nav left-menu">
                 <ul class="right top-ul chevron">
-                    <li><a href="/cecp/index">Home</a></li>
+                    <li><a href="<%=request.getContextPath()%>/index">Home</a></li>
                     <li>
                         <a>Our Programs</a>
                         <ul>
-                            <li><a href="/cecp/enrollmentForm">Coaching Certification</a></li>
-                            <li><a href="/cecp/corporateTraining">Corporate Training</a></li>
-                            <li><a href="/cecp/enrollmentForm">Soft Skills</a></li>
+                            <li><a href="<%=request.getContextPath()%>/enrollmentForm">Coaching Certification</a></li>
+                            <li><a href="<%=request.getContextPath()%>/corporateTraining">Corporate Training</a></li>
+                            <li><a href="<%=request.getContextPath()%>/enrollmentForm">Soft Skills</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
 
 
-            <%--            <!-- logo -->--%>
-            <%--            <ul class="logo-menu">--%>
-            <%--                <a href="index.html" class="logo">--%>
-            <%--                    <!-- Logo White Version -->--%>
-            <%--                    <img class="logo-white" src="img/CECP-logo-min.jpg" alt="">--%>
-            <%--                    <!-- Logo Dark Version -->--%>
-            <%--                    <img class="logo-dark" src="img/CECP-logo-min.jpg" alt="">--%>
-            <%--                </a>--%>
-            <%--            </ul>--%>
+                        <!-- logo -->
+                        <ul class="logo-menu">
+                            <a href="<%=request.getContextPath()%>/index" class="logo">
+                                <!-- Logo White Version -->
+                                <img class="logo-white" src="<%=request.getContextPath()%>/img/cecp-02.png" alt="">
+                                <!-- Logo Dark Version -->
+                                <img class="logo-dark" src="<%=request.getContextPath()%>/img/cecp-02.png" alt="">
+                            </a>
+                        </ul>
 
             <div class="top-nav right-menu">
                 <ul class="top-ul chevron">
-                    <li><a href="/cecp/aboutUs">About Us</a></li>
-                    <li><a href="/cecp/contactUs">Contact Us</a></li>
+                    <li><a href="<%=request.getContextPath()%>/aboutUs">About Us</a></li>
+                    <li><a href="<%=request.getContextPath()%>/contactUs">Contact Us</a></li>
                 </ul>
             </div>
         </div>
@@ -117,7 +118,7 @@
 
                         <h3 class="text-strong text-size-20 text-line-height-1 margin-bottom-20">Etiquette</h3>
                         <p>Good manners can open doors the best education can not</p>
-                        <a class="text-more-info text-primary" href="/">Read more</a>
+                        <a class="text-more-info text-primary" href="/cecp/index">Read more</a>
                     </div>
                 </div>
                 <div class="s-12 m-6 l-4 margin-bottom-60">
@@ -127,7 +128,7 @@
                     <div class="margin-left-60">
                         <h3 class="text-strong text-size-20 text-line-height-1 margin-bottom-20">Civility</h3>
                         <p>There is a plausible case that civility is a prerequisite of the emergence and sustenance of social capital in the community</p>
-                        <a class="text-more-info text-primary" href="/">Read more</a>
+                        <a class="text-more-info text-primary" href="/cecp/index">Read more</a>
                     </div>
                 </div>
                 <div class="s-12 m-6 l-4 margin-bottom-60">
@@ -137,7 +138,7 @@
                     <div class="margin-left-60">
                         <h3 class="text-strong text-size-20 text-line-height-1 margin-bottom-20">Protocol</h3>
                         <p>Establishing the correct, formal & polite behaviour that should be maintained by government and international officials</p>
-                        <a class="text-more-info text-primary" href="/">Read more</a>
+                        <a class="text-more-info text-primary" href="/cecp/index">Read more</a>
                     </div>
                 </div>
             </div>
@@ -158,7 +159,7 @@
                         <p>
                             Introduction to public speaking<br>
                             Introduction to business etiquette<br>
-                            <a class="text-primary-hover" href="/cecp/enrollmentForm">Enroll Now!!</a>
+                            <a class="text-primary-hover" href="<%=request.getContextPath()%>/enrollmentForm">Enroll Now!!</a>
                         </p>
                     </div>
 
@@ -170,24 +171,15 @@
                         <p>
                             Personal Branding<br>
                             Etiquette of protocol<br>
-                            <a class="text-primary-hover" href="/cecp/enrollmentForm">Enroll Now!!</a>
+                            <a class="text-primary-hover" href="<%=request.getContextPath()%>/enrollmentForm">Enroll Now!!</a>
                         </p>
                     </div>
                 </div>
 
                 <div class="s-12 m-12 l-4">
-                    <div class="carousel-default owl-carousel carousel-hide-arrows margin-m-top-bottom-50" >
+                    <div class="margin-m-top-bottom-50" >
                         <div class="item">
                             <img src="<%=request.getContextPath()%>/img/Etiquette.jpg"/>
-                        </div>
-                        <div class="item">
-                            <img src="<%=request.getContextPath()%>/img/conduct.jpg"/>
-                        </div>
-                        <div class="item">
-                            <img src="<%=request.getContextPath()%>/img/good%20impression.jpg"/>
-                        </div>
-                        <div class="item">
-                            <img src="<%=request.getContextPath()%>/img/courtesy.jpg"/>
                         </div>
                     </div>
                 </div>
@@ -199,7 +191,7 @@
                             Choose a single unit of specialization<br>
                             or<br>
                             Pursue a full MCC course<br>
-                            <a class="text-primary-hover" href="/cecp/enrollmentForm">Enroll Now!!</a>
+                            <a class="text-primary-hover" href="<%=request.getContextPath()%>/enrollmentForm">Enroll Now!!</a>
                         </p>
                     </div>
 
@@ -211,7 +203,7 @@
                             Color Psychology<br>
                             Professional Appearance<br>
                             Apply Knowledge of Self to Make Decisions<br>
-                            <a class="text-primary-hover" href="/cecp/enrollmentForm">Enroll Now!!</a>
+                            <a class="text-primary-hover" href="<%=request.getContextPath()%>/enrollmentForm">Enroll Now!!</a>
                         </p>
                     </div>
                 </div>
@@ -234,7 +226,7 @@
                     We will train your employees to distinguish themselves; develop and maintain business relationships
                     with a cutting-edge difference, strengthen your business presence, project a positive, confident,
                     3professional image and reputation and thrive in any situation with finesse and polish.<br>
-                    <a class="text-strong text-primary-hover" href="/cecp/corporateTraining">Click Here For More Info</a>
+                    <a class="text-strong text-primary-hover" href="<%=request.getContextPath()%>/corporateTraining">Click Here For More Info</a>
                 </p>
                 <p>After training with <b>US, YOU </b>will</p>
                 <img class="margin-left-20 margin-top-30 margin-bottom-60" src="<%=request.getContextPath()%>/img/start-your-business.svg" alt="">
@@ -273,7 +265,7 @@
                 <div class="s-12 m-6 l-3 xl-2">
                     <h4 class="text-white text-strong margin-m-top-30">Useful Links</h4>
                     <a class="text-primary-hover" href="">FAQ</a><br>
-                    <a class="text-primary-hover" href="/cecp/contactUs">Contact Us</a><br>
+                    <a class="text-primary-hover" href="<%=request.getContextPath()%>/contactUs">Contact Us</a><br>
                     <a class="text-primary-hover" href="">Blog</a>
                 </div>
                 <div class="s-12 m-6 l-3 xl-2">
@@ -304,9 +296,6 @@
             <div class="s-12 l-6">
                 <p class="text-size-12">Copyright 2020, Centre of Etiquette, Civility & Protocol</p>
                 <p class="text-size-12">Etiquette Opens Doors</p>
-            </div>
-            <div class="s-12 l-6">
-                <a class="right text-size-12 text-primary-hover" href="https://www.jamgadsol.co.ke" title="Code Solution"><br>Jamgad Solutions</a>
             </div>
         </div>
     </section>

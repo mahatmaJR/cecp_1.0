@@ -3,6 +3,7 @@ package service.resource;
 import DAO.interfaces.CenterRepository;
 import DAO.interfaces.CoachRepository;
 import DAO.interfaces.TraineeRepository;
+import model.CoachModel;
 import model.TraineeModel;
 
 import javax.ejb.EJB;
@@ -54,11 +55,11 @@ public class SelectCoachService {
 
         try{
             int centerId = Integer.parseInt(req.getParameter("centerId"));
-            int traineeId = Integer.parseInt( req.getParameter("sessionTraineeId"));
+            int coachId = Integer.parseInt( req.getParameter("sessionCoachId"));
 
-            TraineeModel trainee = traineeRepo.findTraineeRecord(traineeId);
+            CoachModel coach = coachRepo.findCoachRecord(coachId);
 
-            centerRepo.addTraineeToCenter(centerId, trainee);
+            centerRepo.addCoachToCenter(centerId, coach);
 
         }catch (Exception e){
 

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="CecpPU/Hibernate" uuid="994befff-b743-433b-84fe-a02cbabd48ba">
-      <driver-ref>mysql.8</driver-ref>
+    <data-source source="LOCAL" name="CecpPU/Hibernate" uuid="441ba150-6958-4252-9d9d-9e2ba82fb678">
+      <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
       <remarks>Hibernate
 
-C:/Users/Sol/Desktop/Center For Etiquette Civility &amp; Protocol/cecp/src/main/resource/META-INF/persistence.xml</remarks>
+/home/sol/Project/cecp_1.0-master/src/main/resource/META-INF/persistence.xml</remarks>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/cecp</jdbc-url>
     </data-source>

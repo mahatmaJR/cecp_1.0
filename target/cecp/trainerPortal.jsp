@@ -14,6 +14,7 @@
 
 <head>
     <title>Coach Portal</title>
+    <link rel="icon" type="image/ico" href="<%=request.getContextPath()%>/img/cecp.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/components.css">
@@ -32,22 +33,21 @@
 
 <body class="size-1280">
 <%
-    Statement st = null;
+    Statement st;
     Connection con = null;
     int cID = coach.getCoachId();
     try {
         Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cecp", "root", "qwertyuiop1.");
-        st = con.createStatement();
-        ResultSet rs = st.executeQuery("SELECT * FROM trainee_detail WHERE coach_ref = " + cID + "");
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cecp", "cecp", "qwertyuiop.01");
+
 
 %>
 
 <header role="banner" class="position-absolute">
     <nav class="background-transparent background-primary-dott full-width sticky">
         <div class="logo hide-l hide-xl hide-xxl">
-            <a href="/cecp/index" class="logo">
-                <img class="logo-dark" src="<%=request.getContextPath()%>/img/CECP%20logo.JPG" alt="">
+            <a href="<%=request.getContextPath()%>/index" class="logo">
+                <img class="logo-dark" src="<%=request.getContextPath()%>/img/cecp-02.png" alt="">
             </a>
         </div>
 
@@ -55,31 +55,29 @@
 
             <div class="top-nav left-menu">
                 <ul class="right top-ul chevron">
-                    <li><a href="/cecp/coachPortal">Home</a></li>
+                    <li><a href="<%=request.getContextPath()%>/coachPortal">Home</a></li>
                     <li>
                         <a>Our Programs</a>
                         <ul>
-                            <li><a href="/cecp/enrollmentForm">Coaching Certification</a></li>
-                            <li><a href="/cecp/enrollmentForm">Soft Skills</a></li>
+                            <li><a href="<%=request.getContextPath()%>/enrollmentForm">Coaching Certification</a></li>
+                            <li><a href="<%=request.getContextPath()%>/enrollmentForm">Soft Skills</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
 
-            <%--            <!-- logo -->--%>
-            <%--            <ul class="logo-menu">--%>
-            <%--                <a href="index.html" class="logo">--%>
-            <%--                    <!-- Logo White Version -->--%>
-            <%--                    <img class="logo-white" src="img/logo.svg" alt="">--%>
-            <%--                    <!-- Logo Dark Version -->--%>
-            <%--                    <img class="logo-dark" src="img/logo-dark.svg" alt="">--%>
-            <%--                </a>--%>
-            <%--            </ul>--%>
+
+                        <ul class="logo-menu">
+                            <a href="<%=request.getContextPath()%>/index" class="logo">
+                                <img class="logo-white" src="<%=request.getContextPath()%>/img/cecp-02.png" alt="">
+                                <img class="logo-dark" src="<%=request.getContextPath()%>/img/cecp-02.png" alt="">
+                            </a>
+                        </ul>
 
             <div class="top-nav right-menu">
                 <ul class="top-ul chevron">
-                    <li><a href="/cecp/aboutUs">About</a></li>
-                    <li><a href="/cecp/contactUs">Contact</a></li>
+                    <li><a href="<%=request.getContextPath()%>/aboutUs">About</a></li>
+                    <li><a href="<%=request.getContextPath()%>/contactUs">Contact</a></li>
                 </ul>
             </div>
         </div>
@@ -112,7 +110,7 @@
                             </div>
                             <div class="col-xs-3 text-right">
                                 <div class="panel-title btn-group">
-                                    <form method="GET" action="/cecp/main/endSession/logoutUser">
+                                    <form method="GET" action="<%=request.getContextPath()%>/main/endSession/logoutUser">
                                         <input type="submit" class="btn btn-warning" value="LOGOUT" />
                                     </form>
                                 </div>
@@ -120,7 +118,7 @@
                         </div>
                     </div>
 
-                    <div class="panel-body" style="max-height: 720px; min-height: 220px" >
+                    <div class="panel-body" style="max-height: 520px; min-height: 220px" >
                         <ul  class="nav nav-pills list-inline">
                             <li class=""><a  href="#profile" data-toggle="pill">Profile</a></li>
                             <li><a href="#myTrainee" data-toggle="pill">My Trainees</a></li>
@@ -156,8 +154,9 @@
                                             <td><%= coach.getPhoneNumber() %></td>
                                         </tr>
                                         <tr>
-                                            <td>CENTER</td>
-                                            <td><%= coach.getCoachCenter() %></td>
+                                            <td>CENTER DETAIL</td>
+                                            <td id="centerDetail"> <%= coach.getCoachCenter() %> </td>
+                                            <td id="centerDetailSelection"> <a onclick= "window.open('<%=request.getContextPath()%>/selectCenter?cecpID='+ <%= coach.getCoachId() %> +'')"> SELECT/CHANGE CENTER  </a> </td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -181,14 +180,22 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <% while (rs.next()) { %>
+                                        <%
+                                            st = con.createStatement();
+                                            ResultSet rs = st.executeQuery("SELECT * FROM trainee_detail WHERE coach_ref = " + cID + "");
+                                            while (rs.next()) {
+                                        %>
                                         <tr>
                                             <td><%=rs.getString("trainee_id")%> </td>
                                             <td><%=rs.getString("first_name")%> <%=rs.getString("last_name")%></td>
                                             <td><%=rs.getString("cert_level")%> </td>
                                             <td></td>
                                         </tr>
-                                        <% } %>
+                                        <%
+                                            }
+                                            st.close();
+                                            rs.close();
+                                        %>
                                         </tbody>
                                     </table>
                                 </div>
@@ -224,24 +231,44 @@
                                     <table id="examCoachTable" border="1" style="border: #5e5e5e">
                                         <thead>
                                         <tr>
+                                            <td>Exam ID</td>
                                             <td>Course ID</td>
-                                            <td>Name</td>
-                                            <td>Level</td>
+                                            <td>Exam Name</td>
                                             <td>Date Scheduled</td>
                                             <td>Time Scheduled</td>
-                                            <td>Duration</td>
-                                            <td>File</td>
+                                            <td>Add Question</td>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
+                                            <%
+                                                Statement st1 = con.createStatement();
+                                                ResultSet rs1 = st1.executeQuery("SELECT * FROM exam_detail");
+                                                while (rs1.next()) {
+                                            %>
+                                            <tr>
+                                                <td><%=rs1.getString("exam_id")%></td>
+                                                <td><%=rs1.getString("course_ref")%></td>
+                                                <td><%=rs1.getString("exam_name")%></td>
+                                                <td><%=rs1.getString("exam_date")%></td>
+                                                <td><%=rs1.getString("time_scheduled")%></td>
+                                                <td>
+                                                    <a onclick="openSetQuestion('<%=request.getContextPath()%>/setExamQuestion.jsp?examId=<%=rs1.getString("exam_id")%>', 'Set Exam Question', 420, 300)">Add Question(s)</a>
+                                                    <script type="text/javascript">
+                                                        function openSetQuestion(pageURL, pageTitle, width, height) {
+                                                            let left = (screen.width - width) / 2;
+                                                            let top = (screen.height - height) / 4;
+                                                            let displayWindow = window.open(pageURL, pageTitle, 'resizable=yes,width=' + width + ',height=' + height + ',top=' + top +  ',left=' + left);
+                                                        }
+                                                    </script>
+                                                </td>
+                                            </tr>
+                                            <%
+                                                }
+                                                rs1.close();
+                                                st1.close();
+                                            %>
+
+                                            <tr>
                                         </tbody>
                                     </table>
                                 </form>
@@ -353,25 +380,17 @@
                 <p class="text-size-12">Copyright 2020, Centre of Etiquette, Civility & Protocol</p>
                 <p class="text-size-12">Improve Someones Image</p>
             </div>
-            <div class="s-12 l-6">
-                <a class="right text-size-12 text-primary-hover" href="https://www.jamgadsol.co.ke" title="Code Solution"><br>Jamgad Solutions</a>
-            </div>
         </div>
     </section>
 </footer>
-<%} catch (Exception ignored) {
-} finally {
-    assert st != null;
-    try {
-        st.close();
-    } catch (SQLException ignored) {
+<%
+    } catch (Exception ignored) {
 
-    }
-    try {
+    } finally {
+        assert con != null;
         con.close();
-    } catch (SQLException ignored) {
     }
-}
+
 %>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/response.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/owl-carousel/owl.carousel.js"></script>

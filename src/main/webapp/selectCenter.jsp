@@ -11,6 +11,7 @@
 %>
 <head>
     <title>Select A Center</title>
+    <link rel="icon" type="image/ico" href="<%=request.getContextPath()%>/img/cecp.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/components.css">
@@ -52,16 +53,16 @@
 <body>
 <div class="container">
     <section id="content">
-        <% String tId = request.getParameter("cecpID"); %>
+        <% String cId = request.getParameter("cecpID"); %>
 
-        <% request.setAttribute("traineeId", tId);%>
+        <% request.setAttribute("coachId", cId);%>
 
         <%
             Statement st = null;
             Connection con = null;
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cecp", "root", "qwertyuiop1.");
+                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cecp", "cecp", "qwertyuiop.01");
                 st = con.createStatement();
                 ResultSet rs = st.executeQuery("SELECT * FROM center_detail");%>
 
@@ -99,11 +100,28 @@
                 }
             }
         %>
-        <script>
-            let coachTable = document.getElementById('coachTable'), rIndex;
-            for (let i = 0; i < coachTable.rows.length; i++){
+        <form action="<%=request.getContextPath()%>/main/select/centerDetail" method="post" onsubmit="return closeWindow(this)">
+            <p>Your CECP ID: <%=request.getParameter("cecpID")%></p> <br>
+            <input name="sessionCoachId" type="hidden" value="<%= cId %>">
+            <h3>SELECT A CENTER</h3> <br>
+            <h6>Click from the above table and the below form will be automatically filled</h6>
+            <br>
+            <input type="text" required="" placeholder="Center ID" id="centerId" name="centerId"/>
+            <input type="text" required="" placeholder="Center Name" id="centerName" name="centerName" />
+            <input type="text" required="" placeholder="Center Location" id="centerLocation"  name="centerLocation" /> <br>
 
-                coachTable.rows[i].onclick = function () {
+            <input type="submit" value="Submit" class="submit action-button" />
+        </form>
+        <script>
+            let tr3 = ($("#centerTable tr:eq(3)"))[0];
+            let tr30OffsetTop = tr3.clientHeight + tr3.offsetTop;
+
+            $('.coachWrapper').css('max-height', tr30OffsetTop);
+
+let centerTable = document.getElementById('centerTable'), rIndex;
+            for (let i = 0; i < centerTable.rows.length; i++){
+
+                centerTable.rows[i].onclick = function () {
 
                     rIndex = this.rowIndex;
                     document.getElementById('centerId').value = this.cells[0].innerHTML;
@@ -115,21 +133,7 @@
 
             }
 
-        </script>
 
-        <form action="/cecp/main/select/centerDetail" method="post" onsubmit="return closeWindow(this)">
-            <p>Your CECP ID: <%=request.getParameter("cecpID")%></p> <br>
-            <input name="sessionTraineeId" type="hidden" value="<%= tId %>">
-            <h3>SELECT A CENTER</h3> <br>
-            <h6>Click from the above table and the below form will be automatically filled</h6>
-            <br>
-            <input type="text" required="" placeholder="Center ID" id="centerId" name="centerId"/>
-            <input type="text" required="" placeholder="Center Name" id="centerName" name="centerName" />
-            <input type="text" required="" placeholder="Center Location" id="centerLocation"  name="centerLocation" /> <br>
-
-            <input type="submit" value="Submit" class="submit action-button" />
-        </form>
-        <script>
             function  closeWindow(form) {
                 form.submit();
                 window.close();

@@ -3,12 +3,13 @@ package DAO.implementations;
 import DAO.interfaces.TraineeRepository;
 import model.LoginModel;
 import model.TraineeModel;
+import utility.PassSecurity;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import java.util.List;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 
 @Stateless
 public class TraineeRepositoryImp implements TraineeRepository {
@@ -16,15 +17,18 @@ public class TraineeRepositoryImp implements TraineeRepository {
     @PersistenceContext(unitName = "CecpPU")
     EntityManager em;
 
+    private PassSecurity hashPassword = new PassSecurity();
+
     @Override
     public TraineeModel newTraineeRecord(String firstName, String surname, String lastName, String address,
                                          String email, String phoneNumber, String certLevel, String userName,
-                                         String password, String confirmPassword, String role){
+                                         String password, String confirmPassword, String role) throws InvalidKeySpecException, NoSuchAlgorithmException {
 
         LoginModel loginModel = new LoginModel();
         loginModel.setUserName(userName);
-        loginModel.setPassword(password);
-        loginModel.setConfirmPassword(confirmPassword);
+        String hashedPasswordString =  hashPassword.generatePasswordHash(password);
+        loginModel.setPassword(hashedPasswordString);
+        loginModel.setConfirmPassword(hashedPasswordString);
         loginModel.setRole(role);
 
         TraineeModel trainee = new TraineeModel();
@@ -60,7 +64,6 @@ public class TraineeRepositoryImp implements TraineeRepository {
         return loginData;
     }
 
-    ////consider boolean
     @Override
     public LoginModel findLoginRecord(String userName){
         return em.find(LoginModel.class, userName);

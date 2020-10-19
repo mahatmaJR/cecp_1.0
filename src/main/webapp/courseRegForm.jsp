@@ -4,6 +4,7 @@
 <html lang="en">
 <head>
     <title>Course Registration</title>
+    <link rel="icon" type="image/ico" href="<%=request.getContextPath()%>/img/cecp.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/components.css">
@@ -25,7 +26,7 @@
     <% CoachModel admin = (CoachModel) request.getAttribute("loggedAdmin"); %>
     <% request.setAttribute("loggedAdmin", admin); %>
     <section id="content">
-        <form action="/cecp/main/course/addCourse" method="post" >
+        <form action="<%=request.getContextPath()%>/main/course/addCourse" method="post" >
             <h1>Login Form</h1>
             <div>
                 <input type="text" placeholder="Course Name" required="" id="courseName" name="courseName" />

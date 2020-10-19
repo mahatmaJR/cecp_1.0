@@ -21,8 +21,11 @@ public class CourseModel {
     @Column(name = "course_description")
     String courseDescription;
 
-    @ManyToMany(mappedBy = "courses")
+    @ManyToMany(mappedBy = "courses", fetch = FetchType.EAGER)
     Set<EnrollTraineeModel> enrollTraineeModelCourse = new HashSet<>();
+
+    @OneToMany(mappedBy = "course")
+    Set<ExamModel> examSet = new HashSet<>();
 
     public int getCourseId() {
         return courseId;
@@ -60,7 +63,35 @@ public class CourseModel {
         return enrollTraineeModelCourse;
     }
 
-    public void setEnrollTraineeModelCourse(Set<EnrollTraineeModel> enrollTraineeModelCours) {
-        this.enrollTraineeModelCourse = enrollTraineeModelCours;
+    public void setEnrollTraineeModelCourse(Set<EnrollTraineeModel> enrollTraineeModelCourse) {
+        this.enrollTraineeModelCourse = enrollTraineeModelCourse;
     }
+
+    public Set<ExamModel> getExamSet() {return examSet; }
+
+    public void setExamSet(Set<ExamModel> examSet) {this.examSet = examSet; }
+
+    public void addExamSet(ExamModel exam){
+        exam.setCourse(this);
+        examSet.add(exam);
+        this.setExamSet(examSet);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CourseModel )) return false;
+        return courseId != 0 && courseId == (((CourseModel) o).getCourseId());
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
+    }
+
+    @Override
+    public String toString() {
+        return this.courseName;
+    }
+
 }

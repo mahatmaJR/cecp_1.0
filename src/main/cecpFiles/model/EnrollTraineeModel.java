@@ -27,7 +27,7 @@ public class EnrollTraineeModel {
     @JoinColumn(name = "enrolling_trainee_ref", referencedColumnName = "trainee_id")
     TraineeModel enrollingTrainee;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "enrolled_course",
             joinColumns = {@JoinColumn(name = "enrollment_id")},
@@ -93,5 +93,22 @@ public class EnrollTraineeModel {
         payment.setEnrollmentPaymentReference(this);
         paymentsForEnrollment.add(payment);
         this.setPaymentsForEnrollment(paymentsForEnrollment);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CoachModel )) return false;
+        return enrollmentId != 0 && enrollmentId == (((EnrollTraineeModel) o).getEnrollmentId());
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
+    }
+
+    @Override
+    public String toString() {
+        return this.certLevel;
     }
 }

@@ -24,32 +24,36 @@ public class EnrollmentService {
     @EJB
     CourseRepository courseRepo;
 
+    String error;
+
     @Path("/newEnrollmentDetail")
     @POST
     public void newEnrollmentDetail(@Context HttpServletRequest req, @Context HttpServletResponse resp) throws ServletException, IOException {
-        try{
+
+        try {
+
+            Set<CourseModel> selectedCourses = new HashSet<>();
             String certLevel = req.getParameter("certLevel");
             int traineeId = Integer.parseInt(req.getParameter("traineeId"));
             String [] selectedCoursesId = req.getParameterValues("courseUnit");
 
-            Set<CourseModel> selectedCourses = new HashSet<>();
 
-            for (String s : selectedCoursesId) {
-                CourseModel course = courseRepo.findCourseById(Integer.parseInt(s));
-                selectedCourses.add(course);
+            for (int i = 0; i < selectedCoursesId.length; i++) {
+                if (selectedCoursesId[i] != null && selectedCoursesId[i] != "") {
+                    CourseModel course = courseRepo.findCourseById(Integer.parseInt(selectedCoursesId[i]));
+                    selectedCourses.add(course);
+                }
             }
             enrollTraineeRepo.newEnrollmentRecord(certLevel, traineeId, selectedCourses);
+            resp.sendRedirect("/cecp/traineePortal");
 
-            req.getRequestDispatcher("/traineePortal").forward(req, resp);
+        } catch (Exception e) {
 
-        }catch (Exception e){
-
-            String msg = "An error occurred while processing your request, No need to worry, Our System Admin has been notified";
+            String msg = "An error occurred while processing your request, No need to worry, Our System Admin has been notified" + error;
             req.setAttribute("msg", msg);
             req.getRequestDispatcher("/msgDisplay").forward(req, resp);
-            System.out.println(e);
+            System.out.println( "Finally you caught me" + e + error);
 
         }
-
     }
 }

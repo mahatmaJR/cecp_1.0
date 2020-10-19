@@ -8,15 +8,22 @@
     response.setHeader("Pragma", "no-cache");
     response.setDateHeader("Expires", 0);
     String URL = "jdbc:mysql://localhost:3306/cecp";
-    String USER = "root";
-    String PASS = "qwertyuiop1.";
-    Class.forName("com.mysql.jdbc.Driver");
-    Connection con = DriverManager.getConnection(URL, USER, PASS);
+    String USER = "cecp";
+    String PASS = "qwertyuiop.01";
+    Connection con = null;
+    try {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection(URL, USER, PASS);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
 %>
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
     <title>Trainee Portal</title>
+    <link rel="icon" type="image/ico" href="<%=request.getContextPath()%>/img/cecp.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/components.css">
@@ -24,7 +31,6 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/responsee.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/jamsol/jamsol.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/jamsol/jamsol.theme.css">
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/lightcase.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/template-style.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/userInputForm.css">
@@ -43,7 +49,7 @@
 <header role="banner" class="position-absolute">
     <nav class="background-transparent background-primary-dott full-width sticky">
         <div class="logo hide-l hide-xl hide-xxl">
-            <a href="/cecp/index" class="logo">
+            <a href="<%=request.getContextPath()%>/index" class="logo">
                 <img class="logo-dark" src="<%=request.getContextPath()%>/img/CECP%20logo.JPG" alt="">
             </a>
         </div>
@@ -52,32 +58,30 @@
 
             <div class="top-nav left-menu">
                 <ul class="right top-ul chevron">
-                    <li><a href="/cecp/index">Home</a></li>
+                    <li><a href="<%=request.getContextPath()%>/index">Home</a></li>
                     <li>
                         <a>Our Programs</a>
                         <ul>
-                            <li><a href="/cecp/enrollmentForm">Coaching Certification</a></li>
-                            <li><a href="/cecp/corporateTraining">Corporate Training</a></li>
-                            <li><a href="/cecp/enrollmentForm">Soft Skills</a></li>
+                            <li><a href="<%=request.getContextPath()%>/enrollmentForm">Coaching Certification</a></li>
+                            <li><a href="<%=request.getContextPath()%>/corporateTraining">Corporate Training</a></li>
+                            <li><a href="<%=request.getContextPath()%>/enrollmentForm">Soft Skills</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
 
-            <%--          <!-- logo -->--%>
-            <%--          <ul class="logo-menu">--%>
-            <%--            <a href="index.html" class="logo">--%>
-            <%--              <!-- Logo White Version -->--%>
-            <%--              <img class="logo-white" src="" alt="">--%>
-            <%--              <!-- Logo Dark Version -->--%>
-            <%--              <img class="logo-dark" src="" alt="">--%>
-            <%--            </a>--%>
-            <%--          </ul>--%>
+
+                      <ul class="logo-menu">
+                        <a href="<%=request.getContextPath()%>/index" class="logo">
+                          <img class="logo-white" src="<%=request.getContextPath()%>/img/cecp-02.png" alt="">
+                          <img class="logo-dark" src="<%=request.getContextPath()%>/img/cecp-02.png" alt="">
+                        </a>
+                      </ul>
 
             <div class="top-nav right-menu">
                 <ul class="top-ul chevron">
-                    <li><a href="/cecp/aboutUs">About Us</a></li>
-                    <li><a href="/cecp/contactUs">Contact Us</a></li>
+                    <li><a href="<%=request.getContextPath()%>/aboutUs">About Us</a></li>
+                    <li><a href="<%=request.getContextPath()%>/contactUs">Contact Us</a></li>
                 </ul>
             </div>
         </div>
@@ -111,13 +115,13 @@
                             </div>
                             <div class="col-xs-3 text-right">
                                 <div class="panel-title btn-group">
-                                    <a href="/cecp/main/endSession/logoutUser" class="btn btn-warning">LOGOUT</a>
+                                    <a href="<%=request.getContextPath()%>/main/endSession/logoutUser" class="btn btn-warning">LOGOUT</a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="panel-body" style="max-height: 720px; min-height: 220px" >
+                    <div class="panel-body" style="overflow: auto; max-height: 720px; min-height: 220px" >
                         <ul  class="nav nav-pills list-inline">
                             <li class=""><a  href="#profile" data-toggle="pill">Profile</a></li>
                             <li><a href="#course" data-toggle="pill">Courses</a></li>
@@ -187,7 +191,7 @@
                                             <td>Enrollment ID</td>
                                             <td>Certification Level</td>
                                             <td>Date</td>
-                                            <td>Courses</td>
+                                            <td>Course</td>
                                             <td>Add Unit</td>
                                         </tr>
                                         </thead>
@@ -202,19 +206,16 @@
                                                 <td><%=rsEnrollClasses.getString("cert_level")%> </td>
                                                 <td><%=rsEnrollClasses.getString("date_enrolled")%> </td>
                                                 <td>
-                                                    <%
-                                                        int enrollId = Integer.parseInt(rsEnrollClasses.getString("enrollment_id"));
-                                                        Statement stCourses = con.createStatement();
-                                                        ResultSet rsCourses = stCourses.executeQuery("SELECT * FROM enrolled_courses WHERE enrollment_id = " + enrollId +"");
-                                                        while (rsCourses.next()){
-                                                     %>
-                                                        <tr><%= rsCourses.getString("course_id") %></tr>
-                                                    <%
+                                                    <a onclick="openCourseDisplay('<%=request.getContextPath()%>/courseDisplay.jsp?enrollmentId=<%=rsEnrollClasses.getString("enrollment_id")%>', 'Your Courses', 250, 300)">View Course(s)</a>
+                                                    <script type="text/javascript">
+                                                        function openCourseDisplay(pageURL, pageTitle, width, height) {
+                                                            let left = (screen.width - width) / 2;
+                                                            let top = (screen.height - height) / 4;
+                                                            let displayWindow = window.open(pageURL, pageTitle, 'resizable=yes,width=' + width + ',height=' + height + ',top=' + top +  ',left=' + left);
                                                         }
-                                                        stCourses.close();
-                                                        rsCourses.close();
-                                                    %>
+                                                    </script>
                                                 </td>
+                                                <td></td>
                                             </tr>
                                             <%
                                                 }
@@ -338,7 +339,7 @@
                 <div class="s-12 m-6 l-3 xl-2">
                     <h4 class="text-white text-strong margin-m-top-30">Useful Links</h4>
                     <a class="text-primary-hover" href="">FAQ</a><br>
-                    <a class="text-primary-hover" href="/cecp/contactUs">Contact Us</a><br>
+                    <a class="text-primary-hover" href="<%=request.getContextPath()%>/contactUs">Contact Us</a><br>
                     <a class="text-primary-hover" href="">Blog</a>
                 </div>
                 <div class="s-12 m-6 l-3 xl-2">
@@ -370,9 +371,7 @@
                 <p class="text-size-12">Copyright 2020, Centre of Etiquette, Civility & Protocol</p>
                 <p class="text-size-12">Understanding Protocols</p>
             </div>
-            <div class="s-12 l-6">
-                <a class="right text-size-12 text-primary-hover" href="https://www.jamgadsol.co.ke" title="Code Solution"><br>Jamgad Solutions</a>
-            </div>
+
         </div>
     </section>
 </footer>

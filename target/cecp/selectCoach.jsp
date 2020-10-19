@@ -14,6 +14,7 @@
 %>
 <head>
     <title>Select A Coach</title>
+    <link rel="icon" type="image/ico" href="<%=request.getContextPath()%>/img/cecp.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/components.css">
@@ -32,6 +33,7 @@
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/userInputForm.js"></script>
 
     <style>
+
         .coachTableContent{
             border-collapse: collapse;
             margin: 25px 0;
@@ -64,29 +66,31 @@
             Connection con = null;
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cecp", "root", "qwertyuiop1.");
+                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cecp", "cecp", "qwertyuiop.01");
                 st = con.createStatement();
                 ResultSet rs = st.executeQuery("SELECT * FROM coach_detail");%>
 
-        <h4>Our Coaches...</h4>
-        <table id="coachTable" class="coachTableContent" >
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>First Name</th>
-                <th>Surname</th>
-            </tr>
-            </thead>
-            <tbody>
-            <%while (rs.next()) { %>
-            <tr>
-                <td><%=rs.getString("coach_id")%></td>
-                <td><%=rs.getString("first_name")%></td>
-                <td><%=rs.getString("surname")%></td>
-            </tr>
-            <%}%>
-            </tbody>
-        </table>
+        <div style="max-height: 250px;overflow-y: auto">
+            <h4>Our Coaches...</h4>
+            <table id="coachTable" class="coachTableContent" style="overflow: auto">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Surname</th>
+                </tr>
+                </thead>
+                <tbody>
+                <%while (rs.next()) { %>
+                <tr>
+                    <td><%=rs.getString("coach_id")%></td>
+                    <td><%=rs.getString("first_name")%></td>
+                    <td><%=rs.getString("surname")%></td>
+                </tr>
+                <%}%>
+                </tbody>
+            </table>
+        </div>
 
             <%} catch (Exception ignored) {
 
@@ -98,7 +102,7 @@
             %>
 
 
-        <form action="/cecp/main/select/coachDetail" method="post" onsubmit="return closeWindow(this)">
+        <form action="<%=request.getContextPath()%>/main/select/coachDetail" method="post" onsubmit="return closeWindow(this)">
             <p>Your CECP ID: <%=request.getParameter("cecpID")%></p> <br>
             <input name="sessionTraineeId" type="hidden" value="<%= tId %>">
             <h3>SELECT A COACH</h3> <br>
@@ -115,6 +119,12 @@
 </div>
 </body>
 <script>
+
+    let tr3 = ($("#coachTable tr:eq(3)"))[0];
+    let tr30OffsetTop = tr3.clientHeight + tr3.offsetTop;
+
+    $('.coachWrapper').css('max-height', tr30OffsetTop);
+
     let coachTable = document.getElementById('coachTable'), rIndex;
     for (let i = 0; i < coachTable.rows.length; i++){
 
