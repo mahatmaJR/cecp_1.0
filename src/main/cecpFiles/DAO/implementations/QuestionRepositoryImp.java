@@ -29,7 +29,10 @@ public class QuestionRepositoryImp implements QuestionRepository {
         multipleQuestion.setCorrectAnswer(correctAnswer);
 
         em.persist(multipleQuestion);
+        System.out.println(multipleQuestion.getQuestionId());
         return multipleQuestion;
+
+
 
     }
 

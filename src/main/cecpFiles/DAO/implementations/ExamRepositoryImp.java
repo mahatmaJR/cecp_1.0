@@ -53,7 +53,7 @@ public class ExamRepositoryImp implements ExamRepository {
         try {
             ExamModel exam = findExamRecord(examId);
             exam.addQuestion(question);
-
+            System.out.println(question.getExam());
             em.merge(exam);
 
         } catch (Exception e){

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Context;
 import java.io.IOException;
 
@@ -61,8 +62,11 @@ public class ExamService {
             String correctAnswer = req.getParameter("correctAnswer");
 
             QuestionModel question = questionRepo.addNewMultipleQuestion(questionNumber, actualQuestion, optionA, optionB, optionC, optionD, correctAnswer);
+            System.out.println(question.getQuestionId());
+            String examIdentity = req.getParameter("examid");
 
-            int examId = Integer.parseInt(req.getParameter("examId"));
+            int examId = Integer.parseInt(examIdentity);
+            System.out.println(examId);
 
             examRepo.addQuestionToExam(examId, question);
 

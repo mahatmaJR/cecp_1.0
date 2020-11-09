@@ -10,6 +10,7 @@ import java.util.Set;
 public class QuestionModel implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "question_id")
     int questionId;
 

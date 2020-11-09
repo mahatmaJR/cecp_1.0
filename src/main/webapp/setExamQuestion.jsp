@@ -45,10 +45,11 @@
         ResultSet rs = st.executeQuery("SELECT exam_name FROM exam_detail WHERE exam_id = " + examId + "");
         while (rs.next()) {
     %>
-    <p>
-        Exam ID: <%=examId%> Exam Name: <%=rs.getString("exam_name")%>
-    </p>
 
+    <p>
+
+        Exam Name: <input type="text" placeholder="<%=rs.getString("exam_name")%>" required="" id="examName" name="examName" />
+    </p>
     <%
         }
         st.close();
@@ -58,6 +59,10 @@
 </div>
 
         <form action="<%=request.getContextPath()%>/main/exam/setQuestion" method="post">
+
+            <div>
+                Exam ID: <input type="text" placeholder="<%=examId%>" value="<%=examId%>" required="" id="examid" name="examid" /> <br>
+            </div>
             <table>
                 <tbody>
                 <tr>
