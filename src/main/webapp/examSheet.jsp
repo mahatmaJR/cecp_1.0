@@ -58,13 +58,12 @@
 
                     <div class="panel-body" style="background-image:url(<%=request.getContextPath()%>/img/background-5.jpg); overflow: auto; min-height: 420px" >
                         <table>
-                            <thead>
+                            <col width="15%">
+                            <col width="85%">
                             <tr>
                                 <td>Question No.</td>
                                 <td>The Question Appears hear</td>
                             </tr>
-                            </thead>
-                            <tbody>
                             <tr>
                                 <td></td>
                                 <td><input type="radio" name="question_id" value="option_a">A. blah!blah!blah!blah!blah!blah!blah!blah!blah!blah!</td>
@@ -72,20 +71,20 @@
                             <tr>
                                 <td></td>
                                 <td><input type="radio" name="question_id" value="option_b">B. blah!blah!blah!blah!blah!blah!blah!blah!blah!blah!</td>
-                            </tr><tr>
+                            </tr>
+                            <tr>
                                 <td></td>
                                 <td><input type="radio" name="question_id" value="option_c">C. blah!blah!blah!blah!blah!blah!blah!blah!blah!blah!</td>
-                            </tr><tr>
+                            </tr>
+                            <tr>
                                 <td></td>
                                 <td><input type="radio" name="question_id" value="option_d">D. blah!blah!blah!blah!blah!blah!blah!blah!blah!blah!</td>
                             </tr>
-                            </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-2 col-lg-2 col-md-2"></div>
     </section>
 </form>
 </body>
