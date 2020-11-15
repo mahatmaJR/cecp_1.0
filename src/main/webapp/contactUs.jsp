@@ -28,22 +28,22 @@
     </style>
 </head>
 <body class="">
-<a id="loginHangingLink" target="_blank" class="hide-s text-dark text-size-25 text-m-size-15 text-dark-hover" href="/login" style="position:fixed;top:120px;right:-14px;z-index:10;">Login/Join Us....</a>
+<a id="loginHangingLink" target="_blank" class="hide-s text-dark text-size-25 text-m-size-15 text-dark-hover" href="<%=request.getContextPath()%>/login" style="position:fixed;top:120px;right:-14px;z-index:10;">Login/Join Us....</a>
 <script>
     <%
         HttpSession currentSession = request.getSession();
         if(currentSession.getAttribute("loggedTrainee") != null){%>
             let linkPortal = document.getElementById('loginHangingLink');
             linkPortal.innerHTML = "Back to Your Portal....";
-            linkPortal.href = "/traineePortal";
+            linkPortal.href = "<%=request.getContextPath()%>/traineePortal";
     <%} else if (currentSession.getAttribute("loggedCoach") != null){%>
             let linkPortal = document.getElementById('loginHangingLink');
             linkPortal.innerHTML = "Back to Your Portal....";
-            linkPortal.href = "/coachPortal";
+            linkPortal.href = "<%=request.getContextPath()%>/coachPortal";
     <%} else if (currentSession.getAttribute("loggedAdmin") != null){%>
             let linkPortal = document.getElementById('loginHangingLink');
             linkPortal.innerHTML = "Back to Your Portal....";
-            linkPortal.href = "/adminPanel";
+            linkPortal.href = "<%=request.getContextPath()%>/adminPanel";
     <%}%>
 </script>
 <header role="banner" class="position-absolute">

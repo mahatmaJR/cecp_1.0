@@ -29,9 +29,9 @@
     String eId = request.getParameter("examId");
     int examId = Integer.parseInt(eId);
     request.setAttribute("examId", examId);
-    String URL = "jdbc:mysql://localhost:3306/cecp";
-    String USER = "cecp";
-    String PASS = "qwertyuiop.01";
+    String URL = "jdbc:mysql://us-cdbr-east-02.cleardb.com/heroku_dea154609e26f08";
+    String USER = "bf29111e8d842e";
+    String PASS = "98fd5583";
     Connection con = null;
     Statement st;
     try {
@@ -107,7 +107,7 @@
             <div><input type="submit" value="Add Question" class="submit action-button" onclick="document.getElementById('setExamQuestion').reset();" /></div>
             <br>
         </form>
-<div><button class="action-button" onclick= "window.open('<%=request.getContextPath()%>/examPreview.jspf?examID='+ <%= examId %> +'')">Preview</button></div>
+<div><button class="action-button" onclick= "window.open('<%=request.getContextPath()%>/examPreview?examID='+ <%= examId %> +'')">Preview</button></div>
 </body>
 <%
     }catch (Exception ignored){

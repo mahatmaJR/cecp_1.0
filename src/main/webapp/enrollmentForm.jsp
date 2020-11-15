@@ -9,9 +9,9 @@
     String surname = request.getParameter("surname");
     request.setAttribute("traineeId", tId);
     request.setAttribute("surname", surname);
-    String URL = "jdbc:mysql://localhost:3306/cecp";
-    String USER = "cecp";
-    String PASS = "qwertyuiop.01";
+    String URL = "jdbc:mysql://us-cdbr-east-02.cleardb.com/heroku_dea154609e26f08";
+    String USER = "bf29111e8d842e";
+    String PASS = "98fd5583";
     Class.forName("com.mysql.jdbc.Driver");
     Connection con = DriverManager.getConnection(URL, USER, PASS);
 %>

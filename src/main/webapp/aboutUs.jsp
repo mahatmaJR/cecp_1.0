@@ -22,22 +22,22 @@
 </head>
 
 <body class="size-1280">
-<a id="loginHangingLink" target="_blank" class="hide-s text-dark text-size-25 text-m-size-15 text-primary-hover" href="/login" style="position:fixed;top:120px;right:-14px;z-index:10;">Login/Join Us....</a>
+<a id="loginHangingLink" target="_blank" class="hide-s text-dark text-size-25 text-m-size-15 text-primary-hover" href="<%=request.getContextPath()%>/login" style="position:fixed;top:120px;right:-14px;z-index:10;">Login/Join Us....</a>
 <script>
     <%
         HttpSession currentSession = request.getSession();
         if(currentSession.getAttribute("loggedTrainee") != null){ %>
             let linkPortal = document.getElementById('loginHangingLink');
             linkPortal.innerHTML = "Back to Your Portal....";
-            linkPortal.href = "/traineePortal";
+            linkPortal.href = "<%=request.getContextPath()%>/traineePortal";
     <% } else if (currentSession.getAttribute("loggedCoach") != null){ %>
             let linkPortal = document.getElementById('loginHangingLink');
             linkPortal.innerHTML = "Back to Your Portal....";
-             linkPortal.href = "/coachPortal";
+             linkPortal.href = "<%=request.getContextPath()%>/coachPortal";
     <% } else if (currentSession.getAttribute("loggedAdmin") != null){ %>
             let linkPortal = document.getElementById('loginHangingLink');
             linkPortal.innerHTML = "Back to Your Portal....";
-            linkPortal.href = "/adminPanel";
+            linkPortal.href = "<%=request.getContextPath()%>/adminPanel";
     <% } %>
 </script>
 <header role="banner" class="position-absolute">
@@ -207,7 +207,7 @@
                 <div class="s-12 m-6 l-3 xl-2">
                     <h4 class="text-white text-strong margin-m-top-30">Useful Links</h4>
                     <a class="text-primary-hover" href="">FAQ</a><br>
-                    <a class="text-primary-hover" href="/cecp/contactUs">Contact Us</a><br>
+                    <a class="text-primary-hover" href="<%=request.getContextPath()%>/contactUs">Contact Us</a><br>
                     <a class="text-primary-hover" href="">Blog</a>
                 </div>
                 <div class="s-12 m-6 l-3 xl-2">

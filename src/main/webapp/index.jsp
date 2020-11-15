@@ -118,7 +118,7 @@
 
                         <h3 class="text-strong text-size-20 text-line-height-1 margin-bottom-20">Etiquette</h3>
                         <p>Good manners can open doors the best education can not</p>
-                        <a class="text-more-info text-primary" href="/cecp/index">Read more</a>
+                        <a class="text-more-info text-primary" href="<%=request.getContextPath()%>/index">Read more</a>
                     </div>
                 </div>
                 <div class="s-12 m-6 l-4 margin-bottom-60">
@@ -128,7 +128,7 @@
                     <div class="margin-left-60">
                         <h3 class="text-strong text-size-20 text-line-height-1 margin-bottom-20">Civility</h3>
                         <p>There is a plausible case that civility is a prerequisite of the emergence and sustenance of social capital in the community</p>
-                        <a class="text-more-info text-primary" href="/cecp/index">Read more</a>
+                        <a class="text-more-info text-primary" href="<%=request.getContextPath()%>/index">Read more</a>
                     </div>
                 </div>
                 <div class="s-12 m-6 l-4 margin-bottom-60">
@@ -138,7 +138,7 @@
                     <div class="margin-left-60">
                         <h3 class="text-strong text-size-20 text-line-height-1 margin-bottom-20">Protocol</h3>
                         <p>Establishing the correct, formal & polite behaviour that should be maintained by government and international officials</p>
-                        <a class="text-more-info text-primary" href="/cecp/index">Read more</a>
+                        <a class="text-more-info text-primary" href="<%=request.getContextPath()%>/index">Read more</a>
                     </div>
                 </div>
             </div>

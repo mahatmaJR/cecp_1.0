@@ -38,7 +38,7 @@
     int cID = coach.getCoachId();
     try {
         Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cecp", "cecp", "qwertyuiop.01");
+        con = DriverManager.getConnection("jdbc:mysql://us-cdbr-east-02.cleardb.com/heroku_dea154609e26f08", "bf29111e8d842e", "98fd5583");
 
 
 %>
@@ -348,7 +348,7 @@
                 <div class="s-12 m-6 l-3 xl-2">
                     <h4 class="text-white text-strong margin-m-top-30">Useful Links</h4>
                     <a class="text-primary-hover" href="">FAQ</a><br>
-                    <a class="text-primary-hover" href="/cecp/contactUs">Contact Us</a><br>
+                    <a class="text-primary-hover" href="<%=request.getContextPath()%>/contactUs">Contact Us</a><br>
                     <a class="text-primary-hover" href="">Blog</a>
                 </div>
                 <div class="s-12 m-6 l-3 xl-2">

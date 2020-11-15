@@ -62,7 +62,7 @@
             Connection con = null;
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cecp", "cecp", "qwertyuiop.01");
+                con = DriverManager.getConnection("jdbc:mysql://us-cdbr-east-02.cleardb.com/heroku_dea154609e26f08", "bf29111e8d842e", "98fd5583");
                 st = con.createStatement();
                 ResultSet rs = st.executeQuery("SELECT * FROM center_detail");%>
 

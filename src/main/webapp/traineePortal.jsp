@@ -7,9 +7,9 @@
     response.setHeader("Cache-Control", "no-store");
     response.setHeader("Pragma", "no-cache");
     response.setDateHeader("Expires", 0);
-    String URL = "jdbc:mysql://localhost:3306/cecp";
-    String USER = "cecp";
-    String PASS = "qwertyuiop.01";
+    String URL = "jdbc:mysql://us-cdbr-east-02.cleardb.com/heroku_dea154609e26f08";
+    String USER = "bf29111e8d842e";
+    String PASS = "98fd5583";
     Connection con = null;
     try {
         Class.forName("com.mysql.jdbc.Driver");

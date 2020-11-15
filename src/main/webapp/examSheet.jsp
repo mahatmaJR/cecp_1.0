@@ -50,7 +50,7 @@
                             </div>
                             <div class="col-xs-3 col-md-3 col-lg-3 text-right">
                                 <div class="panel-title btn-group">
-                                    <a href="/" class="btn btn-success">SUBMIT</a>
+                                    <a href="<%=request.getContextPath()%>/" class="btn btn-success">SUBMIT</a>
                                 </div>
                             </div>
                         </div>
