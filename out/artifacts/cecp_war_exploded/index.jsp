@@ -22,22 +22,22 @@
 </head>
 
 <body class="size-1280">
-<a id="loginHangingLink" target="_blank" class="hide-s text-dark text-size-25 text-m-size-15 text-dark-hover" href="/cecp/login" style="position:fixed;top:120px;right:-14px;z-index:10;">Login/Join Us....</a>
+<a id="loginHangingLink" target="_blank" class="hide-s text-dark text-size-25 text-m-size-15 text-dark-hover" href="/login" style="position:fixed;top:120px;right:-14px;z-index:10;">Login/Join Us....</a>
 <script>
     <%
         HttpSession currentSession = request.getSession();
         if(currentSession.getAttribute("loggedTrainee") != null){%>
             let linkPortal = document.getElementById('loginHangingLink');
             linkPortal.innerHTML = "Back to Your Portal....";
-            linkPortal.href = "/cecp/traineePortal";
+            linkPortal.href = "/traineePortal";
     <%} else if (currentSession.getAttribute("loggedCoach") != null){%>
             let linkPortal = document.getElementById('loginHangingLink');
             linkPortal.innerHTML = "Back to Your Portal....";
-            linkPortal.href = "/cecp/coachPortal";
+            linkPortal.href = "/coachPortal";
     <%} else if (currentSession.getAttribute("loggedAdmin") != null){%>
             let linkPortal = document.getElementById('loginHangingLink');
             linkPortal.innerHTML = "Back to Your Portal....";
-            linkPortal.href = "/cecp/adminPanel";
+            linkPortal.href = "/adminPanel";
     <%}%>
 </script>
 <header role="banner" class="position-absolute">
@@ -118,7 +118,7 @@
 
                         <h3 class="text-strong text-size-20 text-line-height-1 margin-bottom-20">Etiquette</h3>
                         <p>Good manners can open doors the best education can not</p>
-                        <a class="text-more-info text-primary" href="/cecp/index">Read more</a>
+                        <a class="text-more-info text-primary" href="<%=request.getContextPath()%>/index">Read more</a>
                     </div>
                 </div>
                 <div class="s-12 m-6 l-4 margin-bottom-60">
@@ -128,7 +128,7 @@
                     <div class="margin-left-60">
                         <h3 class="text-strong text-size-20 text-line-height-1 margin-bottom-20">Civility</h3>
                         <p>There is a plausible case that civility is a prerequisite of the emergence and sustenance of social capital in the community</p>
-                        <a class="text-more-info text-primary" href="/cecp/index">Read more</a>
+                        <a class="text-more-info text-primary" href="<%=request.getContextPath()%>/index">Read more</a>
                     </div>
                 </div>
                 <div class="s-12 m-6 l-4 margin-bottom-60">
@@ -138,7 +138,7 @@
                     <div class="margin-left-60">
                         <h3 class="text-strong text-size-20 text-line-height-1 margin-bottom-20">Protocol</h3>
                         <p>Establishing the correct, formal & polite behaviour that should be maintained by government and international officials</p>
-                        <a class="text-more-info text-primary" href="/cecp/index">Read more</a>
+                        <a class="text-more-info text-primary" href="<%=request.getContextPath()%>/index">Read more</a>
                     </div>
                 </div>
             </div>

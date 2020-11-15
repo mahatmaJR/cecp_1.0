@@ -4,9 +4,9 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%
     AdminModel admin = (AdminModel) session.getAttribute("loggedAdmin");
-    String URL = "jdbc:mysql://localhost:3306/cecp";
-    String USER = "cecp";
-    String PASS = "qwertyuiop.01";
+    String URL = "jdbc:mysql://us-cdbr-east-02.cleardb.com/heroku_dea154609e26f08";
+    String USER = "bf29111e8d842e";
+    String PASS = "98fd5583";
     Class.forName("com.mysql.jdbc.Driver");
     Connection con = DriverManager.getConnection(URL, USER, PASS);
 %>
@@ -103,7 +103,7 @@
                             </div>
                             <div class="col-xs-3 text-right">
                                 <div class="panel-title btn-group">
-                                    <form method="GET" action="/cecp/main/endSession/logoutUser">
+                                    <form method="GET" action="<%=request.getContextPath()%>/main/endSession/logoutUser">
                                         <input type="submit" class="btn btn-warning" value="LOGOUT" />
                                     </form>
                                 </div>
@@ -709,7 +709,7 @@
                 <div class="s-12 m-6 l-3 xl-2">
                     <h4 class="text-white text-strong margin-m-top-30">Useful Links</h4>
                     <a class="text-primary-hover" href="">FAQ</a><br>
-                    <a class="text-primary-hover" href="/cecp/contactUs">Contact Us</a><br>
+                    <a class="text-primary-hover" href="<%=request.getContextPath()%>/contactUs">Contact Us</a><br>
                     <a class="text-primary-hover" href="">Blog</a>
                 </div>
                 <div class="s-12 m-6 l-3 xl-2">

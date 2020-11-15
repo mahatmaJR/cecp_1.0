@@ -157,7 +157,7 @@
                 <div class="s-12 m-6 l-3 xl-2">
                     <h4 class="text-white text-strong margin-m-top-30">Useful Links</h4>
                     <a class="text-primary-hover" href="">FAQ</a><br>
-                    <a class="text-primary-hover" href="/cecp/contactUs">Contact Us</a><br>
+                    <a class="text-primary-hover" href="<%=request.getContextPath()%>/contactUs">Contact Us</a><br>
                     <a class="text-primary-hover" href="">Blog</a>
                 </div>
                 <div class="s-12 m-6 l-3 xl-2">

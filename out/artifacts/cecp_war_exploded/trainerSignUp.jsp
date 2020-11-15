@@ -27,7 +27,7 @@
 <body>
 <div class="container">
     <section id="content">
-        <form id="msform"  method="post" action="/cecp/main/coach/addCoach">
+        <form id="msform"  method="post" action="<%=request.getContextPath()%>/main/coach/addCoach">
             <h2 class="fs-title">Create your account</h2>
             <h2 class="fs-title">Personal Details</h2>
             <input type="text" id="fName" name="fName" placeholder="First Name" />
