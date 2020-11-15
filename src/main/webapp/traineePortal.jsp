@@ -50,7 +50,7 @@
     <nav class="background-transparent background-primary-dott full-width sticky">
         <div class="logo hide-l hide-xl hide-xxl">
             <a href="<%=request.getContextPath()%>/index" class="logo">
-                <img class="logo-dark" src="<%=request.getContextPath()%>/img/CECP%20logo.JPG" alt="">
+                <img class="logo-dark" src="<%=request.getContextPath()%>/img/cecp-02.png" alt="">
             </a>
         </div>
 

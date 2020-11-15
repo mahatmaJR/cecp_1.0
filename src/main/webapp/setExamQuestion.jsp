@@ -58,7 +58,7 @@
     %>
 </div>
 
-        <form action="<%=request.getContextPath()%>/main/exam/setQuestion" method="post">
+        <form id="setExamQuestion" action="<%=request.getContextPath()%>/main/exam/setQuestion" method="post">
 
             <div>
                 Exam ID: <input type="text" placeholder="<%=examId%>" value="<%=examId%>" required="" id="examid" name="examid" /> <br>
@@ -104,10 +104,10 @@
                 </tbody>
             </table>
             <br>
-            <div><input type="submit" value="Add Question" class="submit action-button" /></div>
-            <div><button>New Question</button></div>
-            <div><button>Finish</button></div>
+            <div><input type="submit" value="Add Question" class="submit action-button" onclick="document.getElementById('setExamQuestion').reset();" /></div>
+            <br>
         </form>
+<div><button class="action-button" onclick= "window.open('<%=request.getContextPath()%>/examPreview.jspf?examID='+ <%= examId %> +'')">Preview</button></div>
 </body>
 <%
     }catch (Exception ignored){

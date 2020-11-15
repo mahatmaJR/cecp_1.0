@@ -22,22 +22,22 @@
 </head>
 
 <body class="size-1280">
-<a id="loginHangingLink" target="_blank" class="hide-s text-dark text-size-25 text-m-size-15 text-dark-hover" href="/cecp/login" style="position:fixed;top:120px;right:-14px;z-index:10;">Login/Join Us....</a>
+<a id="loginHangingLink" target="_blank" class="hide-s text-dark text-size-25 text-m-size-15 text-dark-hover" href="/login" style="position:fixed;top:120px;right:-14px;z-index:10;">Login/Join Us....</a>
 <script>
     <%
         HttpSession currentSession = request.getSession();
         if(currentSession.getAttribute("loggedTrainee") != null){%>
             let linkPortal = document.getElementById('loginHangingLink');
             linkPortal.innerHTML = "Back to Your Portal....";
-            linkPortal.href = "/cecp/traineePortal";
+            linkPortal.href = "/traineePortal";
     <%} else if (currentSession.getAttribute("loggedCoach") != null){%>
             let linkPortal = document.getElementById('loginHangingLink');
             linkPortal.innerHTML = "Back to Your Portal....";
-            linkPortal.href = "/cecp/coachPortal";
+            linkPortal.href = "/coachPortal";
     <%} else if (currentSession.getAttribute("loggedAdmin") != null){%>
             let linkPortal = document.getElementById('loginHangingLink');
             linkPortal.innerHTML = "Back to Your Portal....";
-            linkPortal.href = "/cecp/adminPanel";
+            linkPortal.href = "/adminPanel";
     <%}%>
 </script>
 <header role="banner" class="position-absolute">

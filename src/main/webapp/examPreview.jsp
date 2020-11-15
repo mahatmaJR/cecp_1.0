@@ -1,4 +1,22 @@
+<%@ page import="java.sql.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Cache-Control", "no-store");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires", 0);
+    String URL = "jdbc:mysql://localhost:3306/cecp";
+    String USER = "cecp";
+    String PASS = "qwertyuiop.01";
+    Connection con = null;
+    try {
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection(URL, USER, PASS);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+%>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Exam Preview</title>
@@ -20,6 +38,11 @@
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-ui.min.js"></script>
 </head>
 <body>
+<%
+    try {
+        int examId = Integer.parseInt(request.getParameter("examID"));
+
+%>
 <header class="section background-image text-center" style="background-image:url(<%=request.getContextPath()%>/img/img-05.jpg)">
     <h1 class="animated-element slow text-extra-thin text-white text-s-size-30 text-m-size-40 text-size-50 text-line-height-1 margin-bottom-30 margin-top-40">
         The Following Content Will be Saved, Please Confirm.
@@ -33,17 +56,13 @@
                 <div class="container-fluid panel-container">
                     <div class="col-xs-3 text-left">
                         <h4 class="panel-title">
-                            <label id="examId">EXAM ID: <b></b></label>
+                            <label id="examId">EXAM ID:<%= examId %> <b></b></label>
                         </h4>
                     </div>
-                    <div class="col-xs-6 text-center ">
-                        <h4 class="panel-title">
-                            <label id="examName"> EXAM NAME: <b></b></label>
-                        </h4>
-                    </div>
+
                     <div class="col-xs-3 text-right">
                         <div class="panel-title btn-group">
-                            <a href="<%=request.getContextPath()%>/main/" class="btn btn-warning">CONFIRM</a>
+                            <a class="btn btn-warning">CONFIRM</a>
                         </div>
                     </div>
                 </div>
@@ -53,30 +72,39 @@
                 <table>
                     <col width="15%">
                     <col width="85%">
+                    <%
+                        Statement st = con.createStatement();
+                        ResultSet rs1 = st.executeQuery("SELECT * FROM question_detail WHERE exam_ref = " + examId + "");
+                        while (rs1.next()){
+                    %>
                     <tr>
-                        <td>Question NO</td>
-                        <td>Question</td>
+                        <td><%= rs1.getString("question_number") %></td>
+                        <td>
+                            <%= rs1.getString("actual_question") %><br>
+                            A. <%= rs1.getString("option_a") %><br>
+                            B. <%= rs1.getString("option_b") %><br>
+                            C. <%= rs1.getString("option_c") %><br>
+                            D. <%= rs1.getString("option_d") %><br>
+                        </td>
                     </tr>
-                    <tr>
-                        <td></td>
-                        <td>Option A</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>Option B</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>Option C</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>Option D</td>
-                    </tr>
+                    <%
+                        }
+                        rs1.close();
+                        st.close();
+                    %>
                 </table>
             </div>
         </div>
     </div>
 </section>
 </body>
+<%
+
+    } catch (Exception ignored) { }
+    finally {
+        try { con.close(); } catch ( SQLException e ) {
+            System.out.println(e);
+        }
+    }
+%>
 </html>
